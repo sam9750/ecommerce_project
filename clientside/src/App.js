@@ -6,7 +6,9 @@ import Navbar from "./Navbar";
 import SignUp from "./Signup";
 import ItemsPage from "./ItemsPage";
 // import { NavLink } from "react-router-dom";
-import Header from "./Header"
+import Header from "./Header";
+import Account from "./Account"
+
 
 // import '../App.css';
 
@@ -41,20 +43,11 @@ function App() {
       }
     })},[])
    
-
-
-  // fetch("/items") 
-  //     .then((resp) => {
-  //       if (resp.ok) {
-  //         resp.json().then((items) => {
-  //           setitems(Items);
-  // }, []);
-  
   
   
   
   useEffect( () => { 
-    fetch("/ItemsPage").then((res) => {
+    fetch("/items").then((res) => {
       if (res.ok) {
         res.json().then((items) => {
           setitems(items);      
@@ -117,19 +110,19 @@ function App() {
         setUser={setUser}
       />
       <Switch>
-        <Route exact path="/">
-          {/* <Landing  />  */}
+        <Route exact path="/MyAccount"> 
+         <Account user={user}/> 
+         </Route>
+
+        <Route exact path= "/Login"> 
+        <Login user={user} onLogin={handleLogin}/>  
         </Route>
-        <Route path="/Login">
-          <Login />
-        </Route>
+        
         <Route path="/create-account">
-          <SignUp
-            setUser={setUser}
-            // setIsAuthenticated={setIsAuthenticated}
-          />
+          <SignUp setUser={setUser} user={user}/>  
         </Route>
-        <Route path="/ItemsPage">
+
+        <Route path="/items">
           <ItemsPage items={items} />
         </Route>
       </Switch>

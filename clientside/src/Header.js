@@ -18,38 +18,25 @@ function Header ({user, onLogout}){
 
 
 
-        <div class="logo">
-            <h1 class= "header">Welcome to Money Time </h1>
+        <div className="logo">
+            <h1 className= "header">Welcome to MyStore </h1>
 
 
     {user ? (
-        <div class= "profile">
+        <div className= "profile">
           <p>Welcome, {user.username}!</p>
-          <img class="img" src={ user? user.image_url :  ""} alt="user profile" ></img>
+          <img className="img" src={ user? user.image_url :  ""} alt="user profile" ></img>
           <br></br>
-          <button class="btn btn-gradient btn-glow" onClick={handleLogout}>Logout</button>
+          <button className="" onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <div>
-            <a id="loginButton"href="/">Login</a>
+            <a id="loginButton"href="/">Lofgfifn</a>
         </div>
       )}
         
 
-        <div class="containerNav">
-            
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/MyAccount">My Account</a></li>
-                    <li><a href="/CustomerService">Customer Service</a></li>
-                    <li><a href="/AboutUs">About Us</a></li>
-                    
-                </ul>
-            </nav>
-       
-        </div>
-
+        
         </div>
 
     )

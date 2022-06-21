@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router } from "react-router-dom";
 
 
-function SignUp() {
+function SignUp({functionthatwouldchangeuserstate}) {
     const [newName, setNewName] = useState("")
     const [newUsername, setNewUsername] = useState("")
     const [newEmail, setNewEmail] = useState("")
