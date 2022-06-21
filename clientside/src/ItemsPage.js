@@ -1,7 +1,7 @@
 import React from 'react'
 import Item from './Item'
 
-function ItemsContainer({items}) {
+function ItemsPage({items}) {
 
     return (
         <div >
@@ -15,4 +15,4 @@ function ItemsContainer({items}) {
     );
 }
 
-export default ItemsContainer;
+export default ItemsPage;

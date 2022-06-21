@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index, :post]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
-  resources :users
+  # resources :users
   
 
   # root "articles#index"
   get "/users", to: "users#index"
+  get "/items", to: "items#index"
   post "/signup", to: "users#create"
 
   post "/login", to: "sessions#create"
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
   
 
   get "/authorized_user", to: "users#show"
+
  
 end
