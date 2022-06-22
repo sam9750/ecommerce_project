@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/users", to: "users#index"
   get "/items", to: "items#index"
   post "/signup", to: "users#create"
-
+  get "/me", to: "users#create"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   

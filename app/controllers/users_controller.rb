@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+
     skip_before_action :authorize, only: [:index, :create]
     wrap_parameters format: []
+
     def index
       users = User.all
       render json: users
@@ -9,13 +11,19 @@ class UsersController < ApplicationController
   
     def show
       current_user = User.find_by(id: session[:user_id])
-      render json: current_user, status: :created
+      if current_user 
+         render json: current_user, status: :created 
+      else
+        render json: { error: "Not authorized" }, status: :unauthorized
+    end
+  end
+        
     end
   
     def create
       user = User.create!(user_params)
       session[:current_user] = user.id
-      render json: user, status: :accepted
+      render json: user, status: :created
     end
   
     def update

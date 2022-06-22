@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect, Redirect } from 'react'
 import Item from './Item'
 
-function ItemsPage({items}) {
+function ItemsPage({items, user, authorized}) {
+
+    if(!authorized) {
+        return <Redirect to="/" />
+    }
+    return <div>If</div>
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <div >
@@ -14,5 +23,8 @@ function ItemsPage({items}) {
         </div>
     );
 }
+
+
+
 
 export default ItemsPage;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useHistory} from 'react';
 import {Link} from "react-router-dom"
 
 function Login ({user,onLogin}){
@@ -43,7 +43,7 @@ const [okay, setOkay] =useState("")
         
        <div>
      
-        <p> asdfsa234df </p>
+        <p> asdfsa234 df </p>
      <form onSubmit={handleSubmit} className="container" >
 
    
@@ -76,7 +76,9 @@ const [okay, setOkay] =useState("")
     onChange={ e=> setPassword(e.target.value)}
     />
 
-
+        <button onClick ={() =>
+        history.push("/")
+        }
 
     </form>
 
