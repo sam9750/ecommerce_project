@@ -16,7 +16,7 @@ function Account({ user }) {
         <h2>Name: {name}</h2>
         <h3>Username: {username}</h3>
         <h6>Age: {age}</h6>
-        <Button className="me-2" onClick={() => history.push("/editprofile")}>
+        <Button className="me-2" onClick={() => history.push("/")}>
           Edit Profile
         </Button>
       </Container>

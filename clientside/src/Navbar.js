@@ -5,12 +5,12 @@ import  Cart  from "./Cart.js";
 
 function Navbar({ onLogout, user, item, setCart, cart, totalPrice, setTotalPrice, loggedIn, onLogin, onClick, handleLogout }) {
 
-    // function handleLogout() {
-    //     fetch('/logout', {
-    //         method: "DELETE",
-    //     })
-    //         .then(() => onLogout())
-    // }
+    function handleLogout() {
+        fetch('/logout', {
+            method: "DELETE",
+        })
+            .then(() => onLogout())
+    }
 
     return (
     <div>

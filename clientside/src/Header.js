@@ -1,10 +1,11 @@
 import "./Header.css"
-import React,{} from "react"
+import React from "react"
 // import Signup from "./Signup"
+import { useHistory } from "react-router-dom"
 
 // function Header ({user}
 function Header ({user, onLogout}){
-    
+    let history = useHistory()
   function handleLogout() {
         fetch("/logout", {
           method: "DELETE",
@@ -19,7 +20,7 @@ function Header ({user, onLogout}){
 
 
         <div className="logo">
-            <h1 className= "header">Welcome to MyStore </h1>
+            <h1 className= "header">Welcome to FunnyWear </h1>
 
 
     {user ? (
@@ -27,11 +28,11 @@ function Header ({user, onLogout}){
           <p>Welcome, {user.username}!</p>
           <img className="img" src={ user? user.image_url :  ""} alt="user profile" ></img>
           <br></br>
-          <button className="" onClick={handleLogout}>Logout</button>
+          <button className="" onClick={handleLogout}>LogoutButton</button>
         </div>
       ) : (
         <div>
-            <a id="loginButton"href="/">Lofgfifn</a>
+            history.push("/items", user)
         </div>
       )}
         

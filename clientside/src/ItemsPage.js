@@ -8,6 +8,7 @@ function ItemsPage({ user, cart, setCart, totalPrice, setTotalPrice, authorized}
 
     const [items, setItems] = useState([])
 
+
     // let history = useHistory()
     
     // if(!authorized) {
@@ -22,13 +23,13 @@ function ItemsPage({ user, cart, setCart, totalPrice, setTotalPrice, authorized}
     // }, [])
 
     useEffect(() => {
-        fetch("/items")
+        fetch("http://localhost:4000/items")
         .then((r) => r.json())
-        .then(setItems);
+        .then(data => console.log(data));
       }, []);
       
     
-      
+      console.log(items)
 
 
 

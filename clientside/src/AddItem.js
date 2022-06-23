@@ -27,8 +27,8 @@ function AddItem({ items, setItems }) {
         type: ""
     }
     
-    function onCreateProd(newProd) {
-      setProducts([...products, newProd])
+    function onCreateItem(newItem) {
+      setItems([...Items, newItem])
     }
   
     function handleSubmit(e) {
@@ -36,7 +36,7 @@ function AddItem({ items, setItems }) {
       setErrors([]);
       console.log("Submitted")
     
-      const newProd = {
+      const newItem = {
         name: formData.title,
         image: formData.image_url,
         description: formData.description,
@@ -50,17 +50,17 @@ function AddItem({ items, setItems }) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(newProd),
+        body: JSON.stringify(newItem),
       })
       .then((r) => {
           if (r.ok) {
-            r.json().then((item) => onCreateProd(item));
+            r.json().then((item) => onCreateItem(item));
         } else {
             r.json().then((err) => setErrors(err.errors));
         } 
       })
       .then(setFormData(initialFormState));
-      history.push("/item")
+      history.push("/items")
     } 
   
     function handleChange(e) {
@@ -87,7 +87,7 @@ function AddItem({ items, setItems }) {
                       <ul className="errors">- {error}</ul>
                     ))}
                   </div>
-                <label htmlFor="name">Product Name: </label>
+                <label htmlFor="name">Item Name: </label>
                 <input
                   name="name"
                   type="text"
@@ -96,7 +96,7 @@ function AddItem({ items, setItems }) {
                   onChange={(e) => handleChange(e)}
                 />
                 <br></br>
-                <label htmlFor="image">Product Image: </label>
+                <label htmlFor="image">Item  Image: </label>
                 <input
                   name="image"
                   type="text"
@@ -105,7 +105,7 @@ function AddItem({ items, setItems }) {
                   onChange={(e) => handleChange(e)}
                 />
                 <br></br>
-                <label htmlFor="description">Product Description: </label>
+                <label htmlFor="description">Item Description: </label>
                 <input
                   name="description"
                   type="text"

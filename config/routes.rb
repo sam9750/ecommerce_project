@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # resources :users
-  
+  resources :items, only: [:index, :show]
+  resources :sessions, only: [:create]
+  resources :carts, only: [:index, :show]
+  resources :cart_items, only: [:index]
+  resources :orders, only: [:create]
+
 
   # root "articles#index"
   get "/users", to: "users#index"

@@ -29,7 +29,7 @@ useEffect(() => {
 
     const onSuccess = token => {
         console.log(token);
-        alert('Order placed! You will receive an email confirmation.');
+        alert('Order placed!');
     
         
     
@@ -53,7 +53,7 @@ useEffect(() => {
     const afterSuccessfulPayment = () => {
         setTotalPrice(0);
         setCart([])
-        history.push("/shop")
+        history.push("/items")
     }
 
     return (
