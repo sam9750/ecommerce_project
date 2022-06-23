@@ -71,3 +71,7 @@ group :test do
   gem "webdrivers"
   gem "faker"
 end
+
+gem "stripe", "~> 6.4"
+
+gem "net-http", "~> 0.2.2"

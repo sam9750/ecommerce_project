@@ -19,15 +19,6 @@ function Account({ user }) {
         <Button className="me-2" onClick={() => history.push("/editprofile")}>
           Edit Profile
         </Button>
-        <Button className="me-2" onClick={() => history.push("/postitem")}>
-          Post A Donation
-        </Button>
-        <Button className="me-2" onClick={() => history.push("/youritems")}>
-          Your Donations
-        </Button>
-        <Button className="me-2" onClick={() => history.push("/test")}>
-          Entered Raffles
-        </Button>
       </Container>
     </Container>
   );

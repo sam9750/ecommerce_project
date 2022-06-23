@@ -1,5 +1,5 @@
-import { useState, useEffect, useHistory} from "react";
-import { BrowserRouter, Route, Switch  } from "react-router-dom";
+import { useState, useEffect,  } from "react";
+import { BrowserRouter, Route, Switch,  } from "react-router-dom";
 // import ItemsContainer from "./ItemsContainer";
 import Login from "./Login";
 import Navbar from "./Navbar";
@@ -14,18 +14,22 @@ import Account from "./Account"
 
 
 function App() {
+  // let history = useHistory()
   console.log("hello")
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   // const [loggedIn, setLoggedIn] = useState(false);
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [items, setitems] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  
+  console.log(user)
 
-
-  const redirectToLogin = () => {
-    let history = useHistory()
-    history.push("/Login", user)
+  // const redirectToLogin = () => {
+    
+  //   history.push("/Login", user) }
 
 
   
@@ -57,17 +61,18 @@ function App() {
   }, [] )
  ;
 
-  function handleLogin() {
-    setUser(user);
+  function handleLogin(currentUser) {
+    setUser(currentUser);
   }
+  
 
   function handleLogout() {
     setUser(null);
   }
 
-    function handleAuth(value) {
-      setIsAuthenticated(value);
-    }
+    // // function handleAuth(value) {
+    // //   setIsAuthenticated(value);
+    // }
 
   return (
 
@@ -87,10 +92,10 @@ function App() {
       <Switch>
         <Route exact path="/MyAccount"> 
          <Account user={user}/> 
-         </Route>
+        </Route>
 
         <Route exact path= "/Login"> 
-        <Login user={user} onLogin={handleLogin}/>  
+          <Login user={user} onLogin={handleLogin}/>  
         </Route>
         
         <Route path="/create-account">
@@ -98,7 +103,14 @@ function App() {
         </Route>
 
         <Route path="/items">
-          <ItemsPage items={items} authorized={false} />
+          <ItemsPage items={items} authorized={false} user = {user} 
+           
+           totalPrice={totalPrice}
+           setTotalPrice={setTotalPrice} 
+           cart={cart}
+           setCart={setCart}
+           
+          />
         </Route>
       </Switch>
     </BrowserRouter>
