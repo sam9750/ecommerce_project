@@ -3,9 +3,9 @@ class Cart < ApplicationRecord
     has_many :items, through: :cart_items
     # has_one :user, through: :order
     # has_many :orders
-    # belongs_to :user
+    belongs_to :user
     # belongs_to :order
-    has_one :user, through: :order
+    # has_one :user, through: :order
     has_many :orders
 
     def add_item(item_params)

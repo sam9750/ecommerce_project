@@ -26,17 +26,19 @@ puts "Seeding Items...."
 
     puts "Done Items...."
 
-    puts "Seeding Orders"
-    o1 = Order.create(user_id: u1.id, cart_id: checked_out: false)
-    o2 = Order.create(user_id: u2.id, cart_id: checked_out: false)
-    o3 = Order.create(user_id: u2.id, cart_id: checked_out: false)
-    puts "Done Seeding Orders"
-
     puts "Seeding Carts ...."
     c1 = Cart.create(user_id: u1.id)
     c2 = Cart.create(user_id: u2.id)
     c3 = Cart.create(user_id: u3.id)
     puts "Done Seeding Carts "
+
+    puts "Seeding Orders"
+    o1 = Order.create(user_id: u1.id, cart_id: c1, checked_out: false)
+    o2 = Order.create(user_id: u2.id, cart_id: c2, checked_out: false)
+    o3 = Order.create(user_id: u2.id, cart_id: c3, checked_out: false)
+    puts "Done Seeding Orders"
+
+   
 
     puts "Seeding Cart Items ...."
     ci1 = CartItem.create(cart_id: c1.id, item_id: i1, quantity: 1)

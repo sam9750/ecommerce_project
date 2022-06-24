@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_070542) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_161747) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id"
     t.integer "item_id"
@@ -20,11 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_070542) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "order_id", null: false
+    t.integer "user_id", null: false
     t.boolean "checked_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_carts_on_order_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -39,13 +39,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_070542) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id_id", null: false
-    t.integer "cart_id_id", null: false
+    t.integer "user_id", null: false
+    t.integer "cart_id", null: false
     t.boolean "checked_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id_id"], name: "index_orders_on_cart_id_id"
-    t.index ["user_id_id"], name: "index_orders_on_user_id_id"
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_070542) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "carts", "orders"
-  add_foreign_key "orders", "cart_ids"
-  add_foreign_key "orders", "user_ids"
+  add_foreign_key "carts", "users"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "users"
 end

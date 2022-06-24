@@ -1,7 +1,7 @@
 class CartItem < ApplicationRecord
     belongs_to :cart
     belongs_to :item
-end
+
 
 def unit_price
     # If there is a record
