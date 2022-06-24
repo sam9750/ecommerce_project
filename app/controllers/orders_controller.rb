@@ -12,10 +12,10 @@ class OrdersController < ApplicationController
     def cart_items
       if (order[checked_out: false])
         order = Order.find(params[checked_out: false])
-        render json: order.cart.products
+        render json: order.cart.items
       else
         order = Order.create(order_params)
-        render json: order.cart.products
+        render json: order.cart.items
       end
     end
   
