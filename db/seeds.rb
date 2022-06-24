@@ -33,9 +33,9 @@ puts "Seeding Items...."
     puts "Done Seeding Orders"
 
     puts "Seeding Carts ...."
-    c1 = Cart.create(order_id: o1.id)
-    c2 = Cart.create(order_id: o2.id)
-    c3 = Cart.create(order_id: o3.id)
+    c1 = Cart.create(user_id: u1.id)
+    c2 = Cart.create(user_id: u2.id)
+    c3 = Cart.create(user_id: u3.id)
     puts "Done Seeding Carts "
 
     puts "Seeding Cart Items ...."

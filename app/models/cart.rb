@@ -4,8 +4,9 @@ class Cart < ApplicationRecord
     # has_one :user, through: :order
     # has_many :orders
     # belongs_to :user
-    belongs_to :order
+    # belongs_to :order
     has_one :user, through: :order
+    has_many :orders
 
     def add_item(item_params)
         current_item = cart_items.find_by(item_id: item_params[:item][:item_id])
