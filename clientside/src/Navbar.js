@@ -1,15 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { NavItem } from "react-bootstrap";
+// import { NavItem } from "react-bootstrap";
 import  Cart  from "./Cart.js";
+// import {useNavigate} from 'react-router-dom'
 
-function Navbar({ onLogout, user, item, setCart, cart, totalPrice, setTotalPrice, loggedIn, onLogin, onClick, handleLogout }) {
-
+function Navbar({ onLogout, user, item, cart, totalPrice, setTotalPrice, loggedIn, onLogin, onClick, handleLogout, setCart }) {
+    // const navigate = useNavigate()
     function handleLogout() {
         fetch('/logout', {
             method: "DELETE",
         })
             .then(() => onLogout())
+            // navigate('/')
     }
 
     return (
@@ -23,6 +25,7 @@ function Navbar({ onLogout, user, item, setCart, cart, totalPrice, setTotalPrice
                 
                 <NavLink exact to="/Login"><button className='nav-button'>Login</button></NavLink>
                 <NavLink exact to="/items"><button className='nav-button'>Items</button></NavLink>
+                <button className='nav-button' onClick={handleLogout} >Logout</button>
             </div>
         </nav>
      </div>

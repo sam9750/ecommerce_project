@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
     
 
     before_action :authorize
-    protect_from_forgery with: :exception
+    # protect_from_forgery with: :exception
     before_action :set_cart
    
     def current_user

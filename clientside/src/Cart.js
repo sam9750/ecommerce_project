@@ -2,10 +2,37 @@ import React, { useState } from 'react';
 import {  Modal, Button, Card } from 'react-bootstrap';
 import CheckoutButton  from './CheckoutButton';
 
-function Cart({item, cart, totalPrice, setTotalPrice, setCart}) {
+function Cart({item, cart, totalPrice, setTotalPrice, setCart, setCartTotal}) {
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
+
+  function handleCheckout() {
+    navigate(`/checkout`)
+    fetch(`/checkout`, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({checked_out: false})
+    })
+    .then(res => res.json())
+    .then(prod => console.log(prod))
+    setCartProds([])
+    setCartTotal(' ')
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 

@@ -19,8 +19,32 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   
 
+  post "/cartorder", to: "users#userOrder"
+  get "/cart", to: "orders#show"
+  get "/totalPrice", to: "users#total_price"
+
+
+
   get "/authorized_user", to: "users#show"
+
+
+  # Stripe 
+  post "/charges", to: "charges#create"
+  
+
+  delete "/cart_items/:id", to: "users#delete_cart_item"
+  
+  patch "/checkout", to: "orders#checkout"
+
+  #Stripe Controller
+  post "/charge", to: "orders#charge"
+
 
  
  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+
+
+
+
+
 end

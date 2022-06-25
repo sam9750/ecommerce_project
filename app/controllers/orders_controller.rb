@@ -1,4 +1,11 @@
 class OrdersController < ApplicationController
+
+  def create
+    order = Order.create!(order_params)
+    render json: order, status: :created
+
+
+
     def index
       orders = Order.all
       render json: orders
@@ -40,6 +47,6 @@ class OrdersController < ApplicationController
     private
   
     def order_params
-      params.permit(:checked_out, :user_id)
+      params.permit(:checked_out, :user_id, :order_id, :cart_id)
     end
   end
