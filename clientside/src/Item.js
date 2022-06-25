@@ -36,7 +36,7 @@ function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartIte
 <Card>
         <Card.Img variant="top" src={item.image_url} style={{height:"396px", "object-fit":"contain"}}/>
         <Card.Body style={{height:"250px"}}>
-          <Card.Title>{item.name}</Card.Title>
+          <Card.Title>{item.title}</Card.Title>
           <Card.Text>
             Description: {item.description}
             <br/>
@@ -44,9 +44,13 @@ function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartIte
             <br/>
             {item.quantity ? "In Stock" : null}
           </Card.Text>
-          <Button variant="primary" style={{width:"94%", position:"absolute", bottom:"10px", left:"3%"}} onClick={(e) => handleAddToCart(e, item)}>Add To Cart</Button>
+          <Button> {addedToCart ?
+      <button disabled={disable} className={'form-button-disabled'} >Added to Cart</button>
+      :
+      <button onClick={handleAddToCart} className={'form-button'} >Add to Cart</button> }</Button>
         </Card.Body>
     </Card>
+    
   );
   
 }

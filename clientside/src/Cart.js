@@ -73,7 +73,7 @@ function Cart({item, cart, totalPrice, setTotalPrice, setCart, setCartTotal}) {
           <div className="subtotal-price">Total: ${totalPrice}.00</div>
           <br></br>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart}/>
+          <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart}>Checkout</CheckoutButton>/>
         </Modal.Footer>
       </Modal>
     </>

@@ -1,5 +1,5 @@
 import { useState, useEffect, } from "react";
-import { BrowserRouter, Route, Switch, } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import ItemsContainer from "./ItemsContainer";
 import Login from "./Login";
 import Navbar from "./Navbar";
@@ -81,6 +81,9 @@ function App() {
 
   function handleLogin(currentUser) {
     setUser(currentUser);
+    setIsAuthenticated(true)
+    setCartItems(cartItems)
+    setLoggedIn(true)
   }
 
 
@@ -129,21 +132,21 @@ function App() {
           setUser={setUser}
           setCart={setCart}
         />
-        <Switch>
+        <Routes>
           <Route exact path="/">
             <Account user={user} cart={cart} setCart={setCart} items={items} cartItems={cartItems} setCartItems={setCartItems} loggedIn={loggedIn} />
           </Route>
 
           <Route exact path="/Login">
             <Login user={user} onLogin={handleLogin} setUser={setUser}
-            isAuthenticated={isAuthenticated}
-            setIsAuthenticated={setIsAuthenticated}
-            cart={cart}
-            setCart={setCart}
-            setLoggedIn={setLoggedIn}
-            loggedIn={loggedIn}
-            cartItems={cartItems}
-            setCartItems={setCartItems} />
+              isAuthenticated={isAuthenticated}
+              setIsAuthenticated={setIsAuthenticated}
+              cart={cart}
+              setCart={setCart}
+              setLoggedIn={setLoggedIn}
+              loggedIn={loggedIn}
+              cartItems={cartItems}
+              setCartItems={setCartItems} />
           </Route>
 
           <Route path="/create-account">
@@ -161,11 +164,11 @@ function App() {
 
             />
           </Route>
-          <Route path="create-user" element={<NewUser />} />
+          <Route path="create-user" element={<SignUp />} />
           <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} />
           <Route path="/checkout" element={<Checkout cartItems={cartItems} />} />
           <Route path="/cart" element={<Cart user={user} cartItems={cartItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
-      </Switch>
+        </Routes>
       </BrowserRouter>
 
 

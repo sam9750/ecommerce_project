@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_161747) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_25_143733) do
   create_table "cart_items", force: :cascade do |t|
-    t.integer "cart_id"
-    t.integer "item_id"
+    t.integer "cart_id", null: false
+    t.integer "item_id", null: false
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "order_id", null: false
     t.boolean "checked_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_carts_on_user_id"
+    t.index ["order_id"], name: "index_carts_on_order_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -32,7 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_161747) do
     t.string "image_url"
     t.string "description"
     t.string "category"
-    t.integer "user_id"
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,11 +41,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_161747) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "cart_id", null: false
     t.boolean "checked_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_orders_on_cart_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -58,7 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_161747) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "carts", "users"
-  add_foreign_key "orders", "carts"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "carts", "orders"
   add_foreign_key "orders", "users"
 end

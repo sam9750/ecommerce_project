@@ -1,8 +1,10 @@
 class Cart < ApplicationRecord
     has_many :cart_items, dependent: :destroy
     has_many :items, through: :cart_items
-    belongs_to :user
-    has_one :order
+    # belongs_to :user
+    belongs_to :order
+    has_one :user, through: :order
+   
 
     # has_one :user, through: :order
     # has_many :orders
