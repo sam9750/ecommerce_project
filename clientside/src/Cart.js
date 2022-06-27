@@ -55,7 +55,7 @@ function Cart({user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, set
           <Link to="/"><button className='nav-button'>Home</button></Link>
           {}
           <button className='nav-button' onClick={() => navigate('/cart')} >Cart</button>
-          <Link to="/Profile"><button className='nav-button'>Profile</button></Link>
+          <Link to="/Profile"><button className='nav-button'></button></Link>
           <Link to="/items"><button className='nav-button'>Items</button></Link>
           <Link to="/Login"><button className='nav-button'>Login</button></Link>
           <button className='nav-button' onClick={handleLogout} >Logout</button>
@@ -112,7 +112,7 @@ function Cart({user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, set
               <button className="cart-card-button" align="center" onClick={handleCheckout} >Checkout</button>
             </div>
           <br></br>
-          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          {/* <Button variant="secondary" onClick={handleClose}>Close</Button> */}
           {/* <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart} onClick={handleCheckout} >Checkout</CheckoutButton> */}
         </Modal.Footer>
       {/* </Modal> */}

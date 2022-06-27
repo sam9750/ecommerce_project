@@ -31,7 +31,7 @@ class User < ApplicationRecord
 #       end
 
 def add_order(order_id)
-    order = Order.find(order_id)
+    order = Order.find_by( user: order_id)
     if order
       self.orders << order
     end
