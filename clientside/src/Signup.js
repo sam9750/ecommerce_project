@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 // import { BrowserRouter as Router } from "react-router-dom";
-
+import { useNavigate } from 'react-router'
 
 function SignUp() {
+    const navigate = useNavigate()
     const [newName, setNewName] = useState("Enter name...")
     const [newUsername, setNewUsername] = useState("Enter Username...")
     const [newEmail, setNewEmail] = useState("Enter email...")
@@ -72,7 +73,8 @@ function SignUp() {
            { if(res.ok) {
                res.json()
                .then(user => setNewUsername(user))
-               return res.json().then(body => setNewUsername(body))
+               return res.json().then(body => setNewUsername(body),
+               navigate(`/`))
             }
         })
 
@@ -151,7 +153,7 @@ function SignUp() {
                             <input type="password" name="password" placeholder="Confirm Password" value={passwordConfirmation} onChange={handlePassConfirmation} required />
                         </div>
                         <div>
-                            <button className='nav-button' onClick={handleNewUser}> Create New Account! </button>
+                            <button className='nav-button' onClick={handleNewUser}> Create New Account!  </button>
                         </div>
                     </form>
                 </div>

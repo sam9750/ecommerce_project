@@ -9,10 +9,10 @@ import ItemsPage from "./ItemsPage";
 // import { NavLink } from "react-router-dom";
 import Header from "./Header";
 // import Account from "./Account"
-import Checkout from './Checkout';
+// import Checkout from './Checkout';
 import Cart from './Cart';
 import Home from './Home'
-
+import CheckoutButton from './CheckoutButton';
 
 // import '../App.css';
 
@@ -171,7 +171,7 @@ function App() {
           {/* // <Route path="create-user" element={<SignUp />} />
           // <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} /> */}
 
-          <Route path="/checkout" element={<Checkout cartItems={cartItems} />} />
+          <Route path="/checkout" element={<CheckoutButton cartItems={cartItems} />} />
           <Route path="/cart" element={<Cart totalPrice={totalPrice} user={user} cartItems={cartItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
         </Routes>
    

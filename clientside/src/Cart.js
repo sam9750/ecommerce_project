@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {  Modal, Button, Card, } from 'react-bootstrap';
-import CheckoutButton  from './CheckoutButton';
+import {  Modal, Button, Card, Row} from 'react-bootstrap';
+// import CheckoutButton  from './CheckoutButton';
+// import Checkout from './Checkout';
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Logo from './saleabstract-geometric-sale-banner-design-template-for-promotion-vector.jpg'
@@ -61,25 +62,30 @@ function Cart({user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, set
                            
       </div>
   
-      <Button variant="link" onClick={handleShow} style={{"text-decoration":"none", color:"#45A29E"}}>{cart.length > 0 ? `Cart(${cart.length})` : `Cart`}</Button>
+      {/* <Button variant="link" onClick={handleShow} style={{"textDecoration":"none", "margin-left": "930px", color:"#45A29E"}}>{cart.length > 0 ? `Cart(${cart.length})` : `Show Cart`}</Button>
+      <Button variant="link" onClick={handleShow} style={{"textDecoration":"none", "margin": "1000px", color:"#45A29E"}}>{cart.length > 0 ? `Cart(${cart.length})` : `Cart`}</Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton >
-          <Modal.Title><div>asdf</div>Your Cart</Modal.Title>
-        </Modal.Header>
+          <Modal.Title style={{"textDecoration":"none", "margin-left": "1000px", color:"#45A29E"}}>Your Cart</Modal.Title>
+        </Modal.Header> */}
 
         <Modal.Body>
+        <Row xs={1} md={4} className="g-4" style={{flex: 1, display: 'flex', flexDirection: 'row'}}>
+          
         {cartItems.map((item, idx) => (
-              <Card style={{ width: '40rem' }}>
-              <Card.Img style={{ width: '10rem' }} variant="top" src={item.image_url} key={idx}/>
-              <Card.Body>
+               <div className='cart-card' key={idx}>
+                
 
+              <Card.Img style={{ width: '20rem' , 'margin-right':'110px',display: 'flex', flexDirection: 'row' }} variant="top" src={item.image_url} key={idx}/>
+           
+             
 
 
 
 
                 
                 <Card.Title>{item.title}</Card.Title>
-                <Card.Text>
+                <Card.Text >
                   Name: {item.title}
                   <br/>
                   Description: {item.description}
@@ -88,14 +94,15 @@ function Cart({user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, set
                   <br/>
                   Quantity: 1
                   <button className='cart-card-button' align='center' style={{ width: 'auto' }} onClick={() => handleDeleteItem(item.id)} >Remove from Cart</button>
+                  </Card.Text>
                   
-                </Card.Text>
+                
           
-              </Card.Body>
-            </Card> 
-        
+              
+                  </div>
+      
             
-          ))}
+          ))}  </Row>
         </Modal.Body>
 
         <Modal.Footer>
@@ -106,9 +113,9 @@ function Cart({user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, set
             </div>
           <br></br>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart} onClick={handleCheckout} >Checkout</CheckoutButton>
+          {/* <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart} onClick={handleCheckout} >Checkout</CheckoutButton> */}
         </Modal.Footer>
-      </Modal>
+      {/* </Modal> */}
     </>
   )
 }

@@ -15,9 +15,14 @@ Rails.application.routes.draw do
   get "/items", to: "items#index"
   post "/signup", to: "users#create"
   get "/me", to: "users#create"
+
+
+
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  get "/authorized_user", to: "users#show"
   
+
 
   post "/cartorder", to: "users#user_order"
   get "/cart", to: "orders#show"
@@ -25,10 +30,10 @@ Rails.application.routes.draw do
 
 
 
-  get "/authorized_user", to: "users#show"
 
 
-  # Stripe 
+
+
   post "/charges", to: "charges#create"
   
 
@@ -36,7 +41,6 @@ Rails.application.routes.draw do
   
   patch "/checkout", to: "orders#checkout"
 
-  #Stripe Controller
   post "/charge", to: "orders#charge"
 
 
