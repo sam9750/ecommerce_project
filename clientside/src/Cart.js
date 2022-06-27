@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import {  Modal, Button, Card } from 'react-bootstrap';
+import {  Modal, Button, Card, } from 'react-bootstrap';
 import CheckoutButton  from './CheckoutButton';
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Logo from './saleabstract-geometric-sale-banner-design-template-for-promotion-vector.jpg'
 
-function Cart({item, cart, totalPrice, setTotalPrice, setCart, setCartTotal}) {
+
+function Cart({user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, setCartItems, cartItems, cartTotalPrice, handleLogout}) {
+  let navigate = useNavigate()
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
+  
 
   function handleCheckout() {
     navigate(`/checkout`)
@@ -15,65 +21,92 @@ function Cart({item, cart, totalPrice, setTotalPrice, setCart, setCartTotal}) {
       body: JSON.stringify({checked_out: false})
     })
     .then(res => res.json())
-    .then(prod => console.log(prod))
-    setCartProds([])
+    .then(item => console.log(item))
+    setCartItems([])
     setCartTotal(' ')
+  }
+
+  function handleDeleteItem(id) {
+    fetch(`/cart_items/${id}`, {
+      method: 'DELETE',
+      header: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(() => onItemDelete(id))
+  }
+
+  function onItemDelete(id) {
+    const updatedItems = cartItems.filter(item => (
+      item.id !== id
+    ))
+    setCartItems(updatedItems)
   }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
   return (
     <>
+     <div className='App-header' align='center'>
+          <Link to="/"><img src={Logo} alt="logo" width={100} className="brand-logo" /></Link>
+      </div>
+      <div className='App-header' align='center'>
+          <Link to="/"><button className='nav-button'>Home</button></Link>
+          {}
+          <button className='nav-button' onClick={() => navigate('/cart')} >Cart</button>
+          <Link to="/Profile"><button className='nav-button'>Profile</button></Link>
+          <Link to="/items"><button className='nav-button'>Items</button></Link>
+          <Link to="/Login"><button className='nav-button'>Login</button></Link>
+          <button className='nav-button' onClick={handleLogout} >Logout</button>
+                           
+      </div>
+  
       <Button variant="link" onClick={handleShow} style={{"text-decoration":"none", color:"#45A29E"}}>{cart.length > 0 ? `Cart(${cart.length})` : `Cart`}</Button>
       <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Your Cart</Modal.Title>
+        <Modal.Header closeButton >
+          <Modal.Title><div>asdf</div>Your Cart</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-        {cart.length > 0 && cart.map((item, index) => {
-            return (
-              <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={item.image}/>
+        {cartItems.map((item, idx) => (
+              <Card style={{ width: '40rem' }}>
+              <Card.Img style={{ width: '10rem' }} variant="top" src={item.image_url} key={idx}/>
               <Card.Body>
-                <Card.Title>{item.name}</Card.Title>
+
+
+
+
+
+                
+                <Card.Title>{item.title}</Card.Title>
                 <Card.Text>
-                  Name: {item.name}
+                  Name: {item.title}
                   <br/>
                   Description: {item.description}
                   <br/>
                   ${item.price}
                   <br/>
                   Quantity: 1
+                  <button className='cart-card-button' align='center' style={{ width: 'auto' }} onClick={() => handleDeleteItem(item.id)} >Remove from Cart</button>
                   
                 </Card.Text>
-                {/* <Button variant="primary">Remove From Cart</Button> */}
+          
               </Card.Body>
             </Card> 
-          
-            )
-          })}
+        
+            
+          ))}
         </Modal.Body>
 
         <Modal.Footer>
-          <div className="subtotal-price">Total: ${totalPrice}.00</div>
+          <div className="subtotal-price">Total: ${cartTotalPrice}.00</div>
+          <div align="center">
+              <p> Total: ${cartTotalPrice}.00 </p>
+              <button className="cart-card-button" align="center" onClick={handleCheckout} >Checkout</button>
+            </div>
           <br></br>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart}>Checkout</CheckoutButton>/>
+          <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart} onClick={handleCheckout} >Checkout</CheckoutButton>
         </Modal.Footer>
       </Modal>
     </>

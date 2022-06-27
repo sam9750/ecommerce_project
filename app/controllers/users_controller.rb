@@ -4,20 +4,44 @@ class UsersController < ApplicationController
     skip_before_action :authorize, only: [:create]
     wrap_parameters format: []
 
-    def index
-      users = User.all
-      render json: users
-    end
+    # def index
+    #   users = User.all
+    #   render json: users
+    # end
   
     def show
-      current_user = User.find_by(id: session[:user_id])
-      if current_user 
-         render json: current_user, status: :created 
+      user = User.find_by(id: session[:user_id])
+      if user 
+         render json: user, status: :created 
       else
         render json: { error: "Not authorized" }, status: :unauthorized
       end
     end
-        
+
+    def user_order
+      # debugger
+      i = Item.find_by(id: params[:id])
+      ci = current_user.cart.items << i
+      render json: current_user.cart.items
+    end
+  
+    def total_price
+      total = current_user.cart.items.sum(:price)
+      
+      render json: total
+    end
+  
+    def delete_cart_item
+      # debugger
+      current_item = current_user.cart.cart_items
+      i = item.find_by(item_id: params[:id])
+      if i
+        i.destroy
+        head :no_content
+      else
+        render json: { error: "item not found" }, status: 404
+      end
+    end
     
   
     def create
@@ -51,8 +75,12 @@ class UsersController < ApplicationController
     end
   
     def user_params
-        
         params.permit(:id, :username, :name, :dob, :email, :password, :password_confirmation, :password_digest, :created_at, :updated_at)
     end
+
+    def order_params
+      params.permit(:checked_out, :user_id)
+    end
+    
   end
   

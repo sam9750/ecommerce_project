@@ -1,4 +1,5 @@
-import { useState, useEffect, } from "react";
+import './App.css'
+import React, { useState, useEffect, } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import ItemsContainer from "./ItemsContainer";
 import Login from "./Login";
@@ -7,7 +8,10 @@ import SignUp from "./Signup";
 import ItemsPage from "./ItemsPage";
 // import { NavLink } from "react-router-dom";
 import Header from "./Header";
-import Account from "./Account"
+// import Account from "./Account"
+import Checkout from './Checkout';
+import Cart from './Cart';
+import Home from './Home'
 
 
 // import '../App.css';
@@ -16,12 +20,12 @@ import Account from "./Account"
 function App() {
   // let history = useHistory()
   console.log("hello")
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [items, setitems] = useState([]);
+  
+  const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState([])
@@ -58,7 +62,7 @@ function App() {
     fetch("/items").then((res) => {
       if (res.ok) {
         res.json().then((items) => {
-          setitems(items);
+          setItems(items);
         });
       }
     })
@@ -79,8 +83,8 @@ function App() {
 
 
 
-  function handleLogin(currentUser) {
-    setUser(currentUser);
+  function handleLogin() {
+    setUser(user);
     setIsAuthenticated(true)
     setCartItems(cartItems)
     setLoggedIn(true)
@@ -122,23 +126,27 @@ function App() {
 
       <Header user={user} onLogout={handleLogout} isAuthenticated={isAuthenticated} />
 
-      <BrowserRouter>
+<BrowserRouter>
+    
 
-        <Navbar
+        
+
+
+        <Routes>
+          <Route path="/" element={ <Navbar
           onLogout={handleLogout}
-          onLogin={handleLogin}
+          handleLogin={handleLogin}
           loggedIn={loggedIn}
           user={user}
           setUser={setUser}
-          setCart={setCart}
-        />
-        <Routes>
-          <Route exact path="/">
-            <Account user={user} cart={cart} setCart={setCart} items={items} cartItems={cartItems} setCartItems={setCartItems} loggedIn={loggedIn} />
-          </Route>
+          setCart={setCart} />} />
 
-          <Route exact path="/Login">
-            <Login user={user} onLogin={handleLogin} setUser={setUser}
+        <Route path="/*" element={<Home user={user} cart={cart} setCart={setCart} items={items} cartItems={cartItems} setCartItems={setCartItems} loggedIn={loggedIn} />} />
+
+          <Route path="/login"
+            element={<Login error={'Please login!'} 
+              user={user} handleLogin={handleLogin} 
+              setUser={setUser}
               isAuthenticated={isAuthenticated}
               setIsAuthenticated={setIsAuthenticated}
               cart={cart}
@@ -146,31 +154,28 @@ function App() {
               setLoggedIn={setLoggedIn}
               loggedIn={loggedIn}
               cartItems={cartItems}
-              setCartItems={setCartItems} />
-          </Route>
+              setCartItems={setCartItems} />}
+          />
 
-          <Route path="/create-account">
-            <SignUp setUser={setUser} user={user} />
-          </Route>
+          <Route path="/signup"
+            element={<SignUp setUser={setUser} user={user} />}
+          />
 
-          <Route path="/items">
-            <ItemsPage items={items} authorized={false} user={user}
+          <Route path="/items" element= {<ItemsPage items={items} authorized={false} user={user}
 
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
               cart={cart}
-              setCart={setCart}
+              setCart={setCart} />} />
 
+          {/* // <Route path="create-user" element={<SignUp />} />
+          // <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} /> */}
 
-            />
-          </Route>
-          <Route path="create-user" element={<SignUp />} />
-          <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} />
           <Route path="/checkout" element={<Checkout cartItems={cartItems} />} />
-          <Route path="/cart" element={<Cart user={user} cartItems={cartItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
+          <Route path="/cart" element={<Cart totalPrice={totalPrice} user={user} cartItems={cartItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
         </Routes>
-      </BrowserRouter>
-
+   
+        </BrowserRouter>
 
     </div>
 

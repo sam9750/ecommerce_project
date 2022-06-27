@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 
 
-function SignUp({functionthatwouldchangeuserstate}) {
-    const [newName, setNewName] = useState("")
-    const [newUsername, setNewUsername] = useState("")
-    const [newEmail, setNewEmail] = useState("")
+function SignUp() {
+    const [newName, setNewName] = useState("Enter name...")
+    const [newUsername, setNewUsername] = useState("Enter Username...")
+    const [newEmail, setNewEmail] = useState("Enter email...")
     const [newPassword, setNewPassword] = useState("")
     const [birthdate, setBirthdate] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -72,7 +72,9 @@ function SignUp({functionthatwouldchangeuserstate}) {
            { if(res.ok) {
                res.json()
                .then(user => setNewUsername(user))
-            }})
+               return res.json().then(body => setNewUsername(body))
+            }
+        })
 
         if (newName === '' || newEmail === '' || newPassword === '' || birthdate === undefined) {
             e.preventDefault();
@@ -81,7 +83,15 @@ function SignUp({functionthatwouldchangeuserstate}) {
             setSubmitted(true);
             setError(false);
         }
-    };
+    
+
+        setNewName('')
+        setNewEmail('')
+        setNewUsername('')
+        setBirthdate('')
+        setPasswordConfirmation('') 
+    
+    }
 
     // Showing success message
     const successMessage = () => {
@@ -91,7 +101,7 @@ function SignUp({functionthatwouldchangeuserstate}) {
                 style={{
                     display: submitted ? '' : 'none',
                 }}>
-                <h1>User {newName} successfully registered!!</h1>
+                <h1 className='please' > User {newName} successfully registered!!</h1>
             </div>
         );
     };
@@ -100,11 +110,11 @@ function SignUp({functionthatwouldchangeuserstate}) {
     const errorMessage = () => {
         return (
             <div
-                className="error"
+                
                 style={{
                     display: error ? '' : 'none',
                 }}>
-                <h1>Please enter all the fields</h1>
+                <h1 className="please">Please enter all of the fields</h1>
             </div>
         );
     }
@@ -116,29 +126,29 @@ function SignUp({functionthatwouldchangeuserstate}) {
                 {errorMessage()}
                 {successMessage()}
             </div>
-            <Router>
+           
                 <div>
                     <form>
                         <div >
-                            <label>Name </label>
-                            <input type="text" name="name" value={newName} onChange={handleNewName} required />
+                            <label></label>
+                            <input type="text" placeholder="Create Name" name="name" value={newName} onChange={handleNewName} required />
                             <br></br>
-                            <label>Email </label>
-                            <input type="text" name="email" value={newEmail} onChange={handleNewEmail} required />
+                            <label> </label>
+                            <input type="text" placeholder="Create Email" name="email" value={newEmail} onChange={handleNewEmail} required />
                             <br></br>
-                            <label>Username </label>
-                            <input type="text" name="username" value={newUsername} onChange={handleNewUsername} required />
+                            <label> </label>
+                            <input type="text" placeholder="Create Username" name="username" value={newUsername} onChange={handleNewUsername} required />
                             <br></br>
-                            <label>Birthday </label>
+                            <label> </label>
                             <input type="date" name="birthday" value={birthdate} onChange={handleNewBirthdate} required />
                             <br></br>
                         </div>
                         <div>
-                            <label>Create Password: </label>
-                            <input type="password" name="password" value={newPassword} onChange={handleNewPassword} required />
+                            <label> </label>
+                            <input type="password" name="password" placeholder="Create Password" value={newPassword} onChange={handleNewPassword} required />
                             <br></br>
-                            <label>Confirm Password: </label>
-                            <input type="password" name="password" value={passwordConfirmation} onChange={handlePassConfirmation} required />
+                            <label> </label>
+                            <input type="password" name="password" placeholder="Confirm Password" value={passwordConfirmation} onChange={handlePassConfirmation} required />
                         </div>
                         <div>
                             <button className='nav-button' onClick={handleNewUser}> Create New Account! </button>
@@ -146,7 +156,7 @@ function SignUp({functionthatwouldchangeuserstate}) {
                     </form>
                 </div>
 
-            </Router>
+        
             </div>
         </div>
     )

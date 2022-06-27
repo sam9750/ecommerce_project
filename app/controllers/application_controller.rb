@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
     before_action :set_cart
    
     def current_user
-      @current_user = User.find_by(id: session[:user_id])
+      User.find_by(id: session[:user_id])
     end
 
 
@@ -23,8 +23,6 @@ class ApplicationController < ActionController::API
 
 
     def authorize
-       
-    
         render json: { errors: ["Not authorized"] }, status: :unauthorized unless logged_in?
 
     end

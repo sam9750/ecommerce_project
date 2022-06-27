@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
 
-  def create
-    order = Order.create!(order_params)
-    render json: order, status: :created
+  
+  # def create
+  #   order = Order.create!(order_params)
+  #   render json: order, status: :created
 
 
 
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
     def show
       
       render json: current_user.cart.items
+
     end
   
     def cart_items
@@ -27,9 +29,11 @@ class OrdersController < ApplicationController
     end
   
     def checkout
-      
-      current_user_order = current_user.update!(:checked_out => true)
-      render json: current_user_order
+      co = current_user.order
+    co_order = co.update!(:checked_out => true)
+    render json: co_order
+      # current_order = current_user.order.update!(:checked_out => true)
+      # render json: current_order
     end
   
     

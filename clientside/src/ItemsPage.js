@@ -1,12 +1,14 @@
-import React, { useState, useEffect} from 'react'
+import React, { useEffect} from 'react'
 // import {useHistory} from "react-router-dom"
-import {Col, Row, Container} from "react-bootstrap"
+// import {Col, Row, Container} from "react-bootstrap"
 import Item from './Item'
+import {Link} from "react-router-dom"
+import Logo from './saleabstract-geometric-sale-banner-design-template-for-promotion-vector.jpg'
+import { useNavigate } from 'react-router-dom'
 
-
-function ItemsPage({ user, cart, setCart, totalPrice, setTotalPrice, authorized}) {
-
-    const [items, setItems] = useState([])
+function ItemsPage({ user, items, cart, setCart, setCartItems, totalPrice, setTotalPrice, authorized, cartItems, handleLogout }) {
+let navigate = useNavigate()
+    // const [items, setItems] = useState([])
 
 
     // let history = useHistory()
@@ -23,7 +25,7 @@ function ItemsPage({ user, cart, setCart, totalPrice, setTotalPrice, authorized}
     // }, [])
 
     useEffect(() => {
-        fetch("http://localhost:4000/items")
+        fetch('/items')
         .then((r) => r.json())
         .then(data => console.log(data));
       }, []);
@@ -37,46 +39,54 @@ function ItemsPage({ user, cart, setCart, totalPrice, setTotalPrice, authorized}
 
 
     return (
+      <div>
+      <div className='App-header' align='center'>
+          <Link to="/"><img src={Logo} alt="logo" width={100} className="brand-logo" /></Link>
+      </div>
+      <div className='App-header' align='center'>
+          <Link to="/"><button className='nav-button'>Home</button></Link>
+          {}
+          <button className='nav-button' onClick={() => navigate('/cart')} >Cart</button>
+          <Link to="/Profile"><button className='nav-button'>Profile</button></Link>
+          <Link to="/items"><button className='nav-button'>Items</button></Link>
+          <Link to="/Login"><button className='nav-button'>Login</button></Link>
+          <button className='nav-button' onClick={handleLogout} >Logout</button>
+                           
+      </div>
+  
         
+        { user ? 
 
-        <div>
-        {user ? 
-            <div><p> Hello! </p>
-            <p> All Items</p>
-            <ul className="cards" style={{ display: 'flex' }}>
-                { items.map(i => <Item key={i.id} item={i}/>) }
-            </ul></div>
-              :
-              <p> Please log in </p>
-              }
+          <div>
 
-{/* <Container className="mt-5">
-      <Row xs={1} md={3} className="g-4">
-        <>
-            <br></br>
-              {items && items.map((item, index) => {
-                return (
-                  <Col>
-                  <React.Fragment key={index}>
-                    <Item item={item} cart={cart} setCart={setCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
-                  </React.Fragment>
-                  </Col>
+
+            <div className="cards" style={{ display: 'flex' }}>
+
+                {items.map((item) => ( 
+                    <Item 
+                        key={item.id} 
+                        item={item} 
+                        cart={cart}
+                        setCart={setCart}
+                        user={user}
+                        setCartItems={setCartItems}
+                        cartItems={cartItems} />)
+                        )
+                      }
+
+                </div>
+
+              </div>  
+                 
+            
+            
+
+              : 
+              <div> <p> Please... </p>  <Link to="/Login"><button className='nav-button'>Login!</button></Link>  </div>}
+              
+              </div>
                 )
-              })}
-        </>
-      </Row>
-    </Container>
-  )
-}
- */}
-
-
-
-
-
-        </div> 
-   
-    );
+              
 }
 
 

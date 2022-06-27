@@ -30,7 +30,32 @@ class User < ApplicationRecord
     
 #       end
 
+def add_order(order_id)
+    order = Order.find(order_id)
+    if order
+      self.orders << order
+    end
+    save
+  end
 
+  def order
+    self.orders.find_by(checked_out: false)
+  end
+
+  def cart 
+    order = self.order
+    if order
+      return order.cart 
+    else 
+      o = Order.new
+      o.checked_out = false
+      c = Cart.new
+      o.cart = c
+      self.orders << o 
+      return c 
+    end
+
+  end
 
 
 end

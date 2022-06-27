@@ -1,7 +1,7 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
-
-import Item from './Item';
+import CardSection from './CardSection';
+// import Item from './Item';
 
 export default function CheckoutForm({cartItems}) {
 

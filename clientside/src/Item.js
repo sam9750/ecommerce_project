@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 // import { NavLink } from "react-router-dom";
 import { Button, Card } from 'react-bootstrap';
 
 function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartItems}) {
+  const [addedToCart, setAddedToCart] = useState(false)
+  const [disable, setDisable] = useState(false)
 
-  const handleAddToCart = (e, item) => {
-    e.preventDefault();
-    setCart([...cart, item]);
-    console.log("THE CART", cart)
-    setTotalPrice(totalPrice + item.price) }
+
+
+
+  function handleAddToCart() {
+
       if (user) {
           fetch("/cartorder", {
               method: 'POST',
@@ -17,7 +19,7 @@ function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartIte
           })
               .then(resp => resp.json())
               .then(cart => {
-                  setCartItems(cart)
+                  // setCartItems(cart)
                   // console.log(cart)
                   // console.log(item)
                   console.log(cart)
@@ -29,7 +31,7 @@ function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartIte
           return "Please login to add to cart."
       }
   
-
+    }
 
 
   return (

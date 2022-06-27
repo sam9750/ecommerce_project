@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :accounts, only: [:index, :post]
+  resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # resources :users
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
   resources :carts, only: [:index, :show]
   resources :cart_items, only: [:index]
-  resources :orders, only: [:create]
+  resources :orders, only: [:create, :show, :index]
 
 
   # root "articles#index"
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   
 
-  post "/cartorder", to: "users#userOrder"
+  post "/cartorder", to: "users#user_order"
   get "/cart", to: "orders#show"
   get "/totalPrice", to: "users#total_price"
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Card, Container, Button} from "react-bootstrap"
-import { useHistory } from "react-router-dom"
+// import { useHistory } from "react-router-dom"
 
 function AddItem({ items, setItems }) {
-  const history = useHistory("");
+ 
   
     const [errors, setErrors] = useState([]);
   
