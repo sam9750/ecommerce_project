@@ -2,7 +2,7 @@ import React, {useState} from "react";
 // import { NavLink } from "react-router-dom";
 import { Button, Card } from 'react-bootstrap';
 
-function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartItems}) {
+function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartItems, handleItems}) {
   const [addedToCart, setAddedToCart] = useState(false)
   const [disable, setDisable] = useState(false)
 
@@ -24,6 +24,7 @@ function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartIte
                   // console.log(item)
                   console.log(cart)
                   setAddedToCart(true)
+                  
                   setDisable(true)
               })
       }
@@ -35,6 +36,7 @@ function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartIte
 
 
   return (
+    
 <Card>
         <Card.Img variant="top" src={item.image_url} style={{height:"396px", "object-fit":"contain"}}/>
         <Card.Body style={{height:"250px"}}>

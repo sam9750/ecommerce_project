@@ -30,6 +30,13 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState([])
   const [cartTotal, setCartTotal] = useState("")
+  const [itemsRetrieved, setItemsRetrieved] = useState(false)
+
+  
+  const handleItems = (item) => {
+    let newItem = [...cartItems, item]
+    setCartItems(newItem)
+    }
 
 
 
@@ -63,6 +70,7 @@ function App() {
       if (res.ok) {
         res.json().then((items) => {
           setItems(items);
+          setItemsRetrieved(true)
         });
       }
     })
@@ -123,8 +131,15 @@ function App() {
   return (
 
     <div className="App">
-
-      <Header user={user} onLogout={handleLogout} isAuthenticated={isAuthenticated} />
+{/* <Navbar></Navbar>  */}
+      {/* <Header user={user} onLogout={handleLogout} isAuthenticated={isAuthenticated} */}
+      {/* <Navbar
+      onLogout={handleLogout}
+      handleLogin={handleLogin}
+      loggedIn={loggedIn}
+      user={user}
+      setUser={setUser}
+      setCart={setCart} /> */}
 
 <BrowserRouter>
     
@@ -161,8 +176,8 @@ function App() {
             element={<SignUp setUser={setUser} user={user} />}
           />
 
-          <Route path="/items" element= {<ItemsPage items={items} authorized={false} user={user}
-
+        <Route path="/items" element= {<ItemsPage items={items} isAuthenticated = {isAuthenticated} authorized={false} user={user}
+              itemsRetrieved = {itemsRetrieved}
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
               cart={cart}
@@ -172,7 +187,7 @@ function App() {
           // <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} /> */}
 
           <Route path="/checkout" element={<CheckoutButton cartItems={cartItems} />} />
-          <Route path="/cart" element={<Cart totalPrice={totalPrice} user={user} cartItems={cartItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
+          <Route path="/cart" element={<Cart totalPrice={totalPrice} user={user} cartItems={cartItems} handleItems ={handleItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
         </Routes>
    
         </BrowserRouter>

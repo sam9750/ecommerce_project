@@ -1,12 +1,42 @@
 class CartItemsController < ApplicationController
-    
-#     def index
-#         render json: CartItems.all
-#     end
-# end
-
-    before_action :set_order
   
+    before_action :set_order
+
+    def index
+      render json: CartItems.all
+    end
+  
+def create
+    @cart.add_item(params)
+     
+    if @cart.save
+      redirect_to cart_path
+    else
+      flash[:error] = 'There was a problem adding this item to your cart.'
+      redirect_to @item
+    end
+  end
+
+
+  def destroy
+    @cart_item.destroy
+    redirect_to cart_path
+  end
+
+  
+  private 
+
+  def cart_item_params 
+      params.permit(:title, :description, :quantity, :price)
+  end
+
+
+end
+
+
+
+
+
 #     def create
 #       @order_item = @order.order_items.new(order_params)
 #       @order.save
@@ -35,22 +65,7 @@ class CartItemsController < ApplicationController
 #       @order = current_order
 #     end
 #   end
-  
-def create
-    @cart.add_item(params)
-     
-    if @cart.save
-      redirect_to cart_path
-    else
-      flash[:error] = 'There was a problem adding this item to your cart.'
-      redirect_to @item
-    end
-  end
-
-  def destroy
-    @cart_item.destroy
-    redirect_to cart_path
-  end
-
-
-end
+  #     def index
+#         render json: CartItems.all
+#     end
+# end

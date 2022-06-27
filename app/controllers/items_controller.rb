@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
     # skip_before_action :index
+
     def index
         items = Item.all
         render json: items
@@ -10,10 +11,10 @@ class ItemsController < ApplicationController
         render json: item
     end
 
-    # def create
-    #     item = item.create!(item_params)
-    #     render json: item, status: :created 
-    # end
+    def create
+        item = item.create!(item_params)
+        render json: item, status: :created 
+    end
 
 
     def destroy
@@ -28,6 +29,6 @@ class ItemsController < ApplicationController
     private 
 
     def item_params 
-        params.permit(:name, :description, :price, :img_url)
+        params.permit(:title, :description, :price, :image_url, :category, :location)
     end
 end

@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { } from 'react'
 // import {useHistory} from "react-router-dom"
 // import {Col, Row, Container} from "react-bootstrap"
 import Item from './Item'
@@ -6,7 +6,8 @@ import {Link} from "react-router-dom"
 import Logo from './saleabstract-geometric-sale-banner-design-template-for-promotion-vector.jpg'
 import { useNavigate } from 'react-router-dom'
 
-function ItemsPage({ user, items, cart, setCart, setCartItems, totalPrice, setTotalPrice, authorized, cartItems, handleLogout }) {
+
+function ItemsPage({ user, setItemsRetrieved, handleItems, items, cart, setCart, setCartItems, totalPrice, setTotalPrice, authorized, cartItems, handleLogout, isAuthenticated }) {
 let navigate = useNavigate()
     // const [items, setItems] = useState([])
 
@@ -24,14 +25,14 @@ let navigate = useNavigate()
         
     // }, [])
 
-    useEffect(() => {
-        fetch('/items')
-        .then((r) => r.json())
-        .then(data => console.log(data));
-      }, []);
+    // useEffect(() => {
+    //     fetch('/items')
+    //     .then((r) => r.json())
+    //     .then(data => console.log(data));
+    //   }, []);
       
     
-      console.log(items)
+     
 
 
 
@@ -55,7 +56,7 @@ let navigate = useNavigate()
       </div>
   
         
-        { user ? 
+        { isAuthenticated ? 
 
           <div>
 
@@ -70,7 +71,8 @@ let navigate = useNavigate()
                         setCart={setCart}
                         user={user}
                         setCartItems={setCartItems}
-                        cartItems={cartItems} />)
+                        cartItems={cartItems}
+                        handleItems = {handleItems} />)
                         )
                       }
 

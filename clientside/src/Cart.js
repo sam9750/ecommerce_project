@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import Logo from './saleabstract-geometric-sale-banner-design-template-for-promotion-vector.jpg'
 
 
-function Cart({user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, setCartItems, cartItems, cartTotalPrice, handleLogout}) {
+function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, setCartItems, cartItems, cartTotalPrice, handleLogout}) {
   let navigate = useNavigate()
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);

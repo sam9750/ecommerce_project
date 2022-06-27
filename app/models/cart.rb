@@ -7,6 +7,31 @@ class Cart < ApplicationRecord
     # belongs_to :user
     
 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
     # def add_item(item_id)
     #     item_id = Item.find('item_id = ?', item_id)
     #     if tutor
