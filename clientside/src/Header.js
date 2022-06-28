@@ -9,11 +9,11 @@ import React from "react"
 function Header ({user, onLogout}){
     // let history = useHistory()
     
-  // function handleLogout() {
-  //       fetch("/logout", {
-  //         method: "DELETE",
-  //       }).then(() => onLogout());
-  //     }
+  function handleLogout() {
+        fetch("/logout", {
+          method: "DELETE",
+        }).then(() => onLogout());
+      }
   
     return (
 
@@ -32,7 +32,7 @@ function Header ({user, onLogout}){
           <p>Welcome, {user.username}!</p>
           <img className="img" src={ user? user.image_url :  ""} alt="" ></img>
           <br></br>
-          {/* <button className="" onClick={handleLogout}>LogoutButton</button> */}
+          <button className="" onClick={handleLogout}>LogoutButton</button>
         
         </div>
       ) : (

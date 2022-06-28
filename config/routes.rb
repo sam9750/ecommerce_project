@@ -6,16 +6,17 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
   resources :sessions, only: [:create]
   resources :carts, only: [:index, :show]
-  resources :cart_items, only: [:index]
+  resources :cart_items, only: [:index, :show, :destroy, :create]
   resources :orders, only: [:create, :show, :index]
 
 
   # root "articles#index"
   get "/users", to: "users#index"
-  get "/items", to: "items#index"
+  # get "/items", to: "items#index"
   post "/signup", to: "users#create"
   get "/me", to: "users#create"
 
+  
 
 
   post "/login", to: "sessions#create"
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
   post "/charges", to: "charges#create"
   
 
-  delete "/cart_items/:id", to: "users#delete_cart_item"
+  delete "/cart_items/:id", to: "cart_items#destroy"
   
   patch "/checkout", to: "orders#checkout"
 

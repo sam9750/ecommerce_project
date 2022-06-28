@@ -2,15 +2,16 @@ import React, {useState} from "react";
 // import { NavLink } from "react-router-dom";
 import { Button, Card } from 'react-bootstrap';
 
-function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartItems, handleItems}) {
+function Item({ user, item, items, cart, setCart, cartItems, totalPrice, setTotalPrice, setCartItems, handleItems}) {
   const [addedToCart, setAddedToCart] = useState(false)
   const [disable, setDisable] = useState(false)
+  console.log(cartItems.length)
 
 
 
 
   function handleAddToCart() {
-
+console.log(cartItems.length)
       if (user) {
           fetch("/cartorder", {
               method: 'POST',
@@ -18,12 +19,15 @@ function Item({ user, item, cart, setCart, totalPrice, setTotalPrice, setCartIte
               body: JSON.stringify(item),
           })
               .then(resp => resp.json())
-              .then(cart => {
+              .then(newItem => {
                   // setCartItems(cart)
                   // console.log(cart)
                   // console.log(item)
-                  console.log(cart)
-                  setAddedToCart(true)
+                  
+                  setCartItems([...cartItems, newItem])
+                  console.log(cartItems.length)
+                  // handleItems(item)
+
                   
                   setDisable(true)
               })

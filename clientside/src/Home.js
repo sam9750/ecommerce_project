@@ -25,11 +25,11 @@ function Home({user, cart, setCart, items, setCartItems, cartItems, loggedIn}) {
             <header >
                 {user ? 
                 <p className="welcome">
-                Welcome, {user.name}.
+                Welcome, {user.name}!
                 </p> 
                 :
                 <p className="welcome">
-                Redirecting to home...
+                Redirecting to home page...
                 </p> 
 }
             </header>

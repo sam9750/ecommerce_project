@@ -20,6 +20,7 @@ import CheckoutButton from './CheckoutButton';
 function App() {
   // let history = useHistory()
   console.log("hello")
+  
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -31,8 +32,10 @@ function App() {
   const [cartItems, setCartItems] = useState([])
   const [cartTotal, setCartTotal] = useState("")
   const [itemsRetrieved, setItemsRetrieved] = useState(false)
+  const [yourCartItems, setYourCartItems] = useState([])
 
   
+
   const handleItems = (item) => {
     let newItem = [...cartItems, item]
     setCartItems(newItem)
@@ -50,6 +53,19 @@ function App() {
 
 
   //Keeps user logged in
+//   useEffect(() => {
+//     fetch("/authorized_user").then((res) => {
+//         if (res.ok) {
+//           res.json()
+//         }
+//   }).then((user) => {
+//     setIsAuthenticated(true);
+//     setUser(user);
+//     setLoggedIn(true);
+// })
+
+//   }, [])
+
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
       if (res.ok) {
@@ -57,6 +73,7 @@ function App() {
           setIsAuthenticated(true);
           setUser(user);
           setLoggedIn(true)
+          console.log('HELLO')
         });
       }
     })
@@ -79,14 +96,26 @@ function App() {
   }, [])
     ;
 
+ 
+  
+
   useEffect(() => {
-    fetch('/cart')
+    fetch('/cart_items')
       .then((res) => {
         if (res.ok) {
           res.json().then(cartItems => setCartItems(cartItems))
         }
       })
-  }, [user])
+  }, [user, cartItems.length ])
+
+  useEffect(() => {
+    fetch('/cart')
+      .then((res) => {
+        if (res.ok) {
+          res.json().then(yourCartItems => setYourCartItems(yourCartItems))
+        }
+      })
+  }, [user, ])
 
 
 
@@ -124,7 +153,8 @@ function App() {
 
 
 
-
+  // console.log(cart)
+  // console.log(cartItems)
 
 
 
@@ -173,21 +203,22 @@ function App() {
           />
 
           <Route path="/signup"
-            element={<SignUp setUser={setUser} user={user} />}
+            element={<SignUp setUser={setUser} user={user} setIsAuthenticated={setIsAuthenticated} />}
           />
 
-        <Route path="/items" element= {<ItemsPage items={items} isAuthenticated = {isAuthenticated} authorized={false} user={user}
+        <Route path="/items" element= {<ItemsPage items={items} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}  
+            authorized={false} user={user}
               itemsRetrieved = {itemsRetrieved}
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
               cart={cart}
-              setCart={setCart} />} />
+              setCart={setCart} cartItems={cartItems} setCartItems={setCartItems} />} />
 
           {/* // <Route path="create-user" element={<SignUp />} />
           // <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} /> */}
 
           <Route path="/checkout" element={<CheckoutButton cartItems={cartItems} />} />
-          <Route path="/cart" element={<Cart totalPrice={totalPrice} user={user} cartItems={cartItems} handleItems ={handleItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
+          <Route path="/cart" element={<Cart yourCartItems={yourCartItems} setYourCartItems={setYourCartItems} totalPrice={totalPrice} user={user} cartItems={cartItems} handleItems ={handleItems} setCartItems={setCartItems} cart={cart} setCart={setCart} item={items} cartTotalPrice={cartTotal} setCartTotal={setCartTotal} />} />
         </Routes>
    
         </BrowserRouter>

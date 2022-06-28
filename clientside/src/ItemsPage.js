@@ -32,8 +32,8 @@ let navigate = useNavigate()
     //   }, []);
       
     
-     
-
+     console.log(cartItems)
+   console.log(isAuthenticated)
 
 
 
@@ -64,7 +64,7 @@ let navigate = useNavigate()
             <div className="cards" style={{ display: 'flex' }}>
 
                 {items.map((item) => ( 
-                    <Item 
+                    <Item items={items}
                         key={item.id} 
                         item={item} 
                         cart={cart}

@@ -1,9 +1,9 @@
 class CartItemsController < ApplicationController
   
-    before_action :set_order
+    # before_action :set_order
 
     def index
-      render json: CartItems.all
+      render json: CartItem.all
     end
   
 def create
@@ -18,9 +18,16 @@ def create
   end
 
 
+  # def destroy
+  #   @cart_item.destroy
+  #   redirect_to cart_path
+  # end
+
+
   def destroy
-    @cart_item.destroy
-    redirect_to cart_path
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    head :no_content
   end
 
   

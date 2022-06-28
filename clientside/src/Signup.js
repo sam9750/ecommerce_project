@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // import { BrowserRouter as Router } from "react-router-dom";
 import { useNavigate } from 'react-router'
 
-function SignUp() {
+function SignUp({setIsAuthenticated, setUser}) {
     const navigate = useNavigate()
     const [newName, setNewName] = useState("Enter name...")
     const [newUsername, setNewUsername] = useState("Enter Username...")
@@ -72,9 +72,19 @@ function SignUp() {
         .then(res => 
            { if(res.ok) {
                res.json()
-               .then(user => setNewUsername(user))
-               return res.json().then(body => setNewUsername(body),
-               navigate(`/`))
+               .then(user => 
+                { console.log(user)
+                    setUser(user)
+               setIsAuthenticated(true)
+            //    setUser(user),
+               return navigate(`/`)})
+
+            //    return res.json().then(body => 
+            //     // setNewUsername(body),
+            //     console.log(body),
+            //     setIsAuthenticated(true),
+            // //    navigate(`/`)
+            
             }
         })
 

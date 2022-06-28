@@ -16,6 +16,10 @@ const [error, setError] = useState("")
 
 const navigate = useNavigate()
 
+    function goHome() {
+        navigate("/")
+    }
+
     function handleLoginSubmit(e){
     e.preventDefault()
     // setLoading(true)
@@ -23,7 +27,7 @@ const navigate = useNavigate()
     
     fetch('/login',{
         method: 'POST',
-        headers: {"Content-Type" : "application/json"},
+        headers: {"Content-Type" : "application/json", "Accept" : "application/json"},
         body :JSON.stringify({ username, password}) 
     })
     .then(data => { 
@@ -56,7 +60,7 @@ const navigate = useNavigate()
         
         <div align="center" style={{height: "100%"}} >
         {user ? 
-        <h2 style={{ color: 'black', lineHeight: .5, padding: 1, fontWeight: 'bold', fontStyle: 'italic' }}>{`${user.name} is logged in`} {navigate("/")}</h2>    
+        <h2 style={{ color: 'black', lineHeight: .5, padding: 1, fontWeight: 'bold', fontStyle: 'italic' }}>{`${user.name} is logged in`}{<button onClick={goHome}>Back Home</button>}</h2>    
             :
     
             <form className='form-container' onSubmit={handleLoginSubmit}>

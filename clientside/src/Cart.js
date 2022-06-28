@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {  Modal, Button, Card, Row} from 'react-bootstrap';
 // import CheckoutButton  from './CheckoutButton';
 // import Checkout from './Checkout';
@@ -7,12 +7,25 @@ import { Link } from 'react-router-dom'
 import Logo from './saleabstract-geometric-sale-banner-design-template-for-promotion-vector.jpg'
 
 
-function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, setCartItems, cartItems, cartTotalPrice, handleLogout}) {
+function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, setCartItems, cartItems, cartTotalPrice, handleLogout, yourCartItems, setYourCartItems}) {
   let navigate = useNavigate()
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
-  
+ 
+
+console.log(cartItems, 'vs', yourCartItems)
+
+
+
+useEffect(() => {
+  fetch('/cart_items')
+    .then((res) => {
+      if (res.ok) {
+        res.json().then(cartItems => setCartItems(cartItems))
+      }
+    })
+}, [ ])
 
   function handleCheckout() {
     navigate(`/checkout`)
@@ -28,13 +41,12 @@ function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setC
   }
 
   function handleDeleteItem(id) {
+
     fetch(`/cart_items/${id}`, {
       method: 'DELETE',
-      header: {
-        "Content-Type": "application/json"
-      }
+     
     })
-      .then(() => onItemDelete(id))
+     .then(() => onItemDelete(id))
   }
 
   function onItemDelete(id) {
@@ -44,7 +56,18 @@ function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setC
     setCartItems(updatedItems)
   }
 
+  //filter over all cartitems we're mapping over and find out if the user has each item in their cart. If they do, include it in the new state. Then map over that new state
+//   const filteredItems = cartItems.filter(cartItem => {
+//     console.log(cartItem)
+//     return cartItem.item.id === user.cart.cart_item.id
+//   })
+//  setYourCartItems(filteredItems)
 
+
+console.log(cartItems, 'cartItems')
+ if (!cartItems) {
+  <h1> Loading..</h1>
+ }
 
   return (
     <>
@@ -55,7 +78,7 @@ function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setC
           <Link to="/"><button className='nav-button'>Home</button></Link>
           {}
           <button className='nav-button' onClick={() => navigate('/cart')} >Cart</button>
-          <Link to="/Profile"><button className='nav-button'></button></Link>
+          <Link to="/Profile"><button className='nav-button'>Profile</button></Link>
           <Link to="/items"><button className='nav-button'>Items</button></Link>
           <Link to="/Login"><button className='nav-button'>Login</button></Link>
           <button className='nav-button' onClick={handleLogout} >Logout</button>
@@ -72,11 +95,23 @@ function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setC
         <Modal.Body>
         <Row xs={1} md={4} className="g-4" style={{flex: 1, display: 'flex', flexDirection: 'row'}}>
           
-        {cartItems.map((item, idx) => (
+        {/* { cartItems && cartItems.length > 0 ? cartItems.map((cartitem, idx) => {
+          console.log(cartitem, 'cartitem') */}
+          
+          { cartItems && cartItems.length > 0 ? cartItems.map((cartitem, idx) => {
+            console.log(cartitem, 'cartitem')
+
+
+
+
+
+
+          return cartitem.item ? ( 
+          
                <div className='cart-card' key={idx}>
                 
 
-              <Card.Img style={{ width: '20rem' , 'margin-right':'110px',display: 'flex', flexDirection: 'row' }} variant="top" src={item.image_url} key={idx}/>
+              {cartitem.item.image_url ? <Card.Img style={{ width: '20rem' , 'margin-right':'110px',display: 'flex', flexDirection: 'row' }} variant="top" src={cartitem.item.image_url} key={idx}/>: null}
            
              
 
@@ -84,16 +119,16 @@ function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setC
 
 
                 
-                <Card.Title>{item.title}</Card.Title>
+                <Card.Title>{cartitem.item.title}</Card.Title>
                 <Card.Text >
-                  Name: {item.title}
+                  Name: {cartitem.item.title}
                   <br/>
-                  Description: {item.description}
+                  Description: {cartitem.item.description}
                   <br/>
-                  ${item.price}
+                  ${cartitem.item.price}
                   <br/>
                   Quantity: 1
-                  <button className='cart-card-button' align='center' style={{ width: 'auto' }} onClick={() => handleDeleteItem(item.id)} >Remove from Cart</button>
+                  <button className='cart-card-button' align='center' style={{ width: 'auto' }} onClick={() => handleDeleteItem(cartitem.id)} >Remove from Cart</button>
                   </Card.Text>
                   
                 
@@ -102,7 +137,16 @@ function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setC
                   </div>
       
             
-          ))}  </Row>
+          ) //closing paranthesis 
+          :null
+          
+          }
+          
+          ): 
+          
+          null 
+          
+          }  </Row>
         </Modal.Body>
 
         <Modal.Footer>
