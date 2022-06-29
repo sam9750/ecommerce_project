@@ -9,23 +9,23 @@ import Logo from './saleabstract-geometric-sale-banner-design-template-for-promo
 
 function Cart({handleItems, user, cart, totalPrice, setTotalPrice, setCart, setCartTotal, setCartItems, cartItems, cartTotalPrice, handleLogout, yourCartItems, setYourCartItems}) {
   let navigate = useNavigate()
-  const [showModal, setShowModal] = useState(false);
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
+  // const [showModal, setShowModal] = useState(false);
+  // const handleClose = () => setShowModal(false);
+  // const handleShow = () => setShowModal(true);
  
 
-console.log(cartItems, 'vs', yourCartItems)
+// console.log(cartItems, 'vs', yourCartItems)
 
 
 
-useEffect(() => {
-  fetch('/cart_items')
-    .then((res) => {
-      if (res.ok) {
-        res.json().then(cartItems => setCartItems(cartItems))
-      }
-    })
-}, [ ])
+// useEffect(() => {
+//   fetch('/cart_items')
+//     .then((res) => {
+//       if (res.ok) {
+//         res.json().then(cartItems => setCartItems(cartItems))
+//       }
+//     })
+// }, [ ])
 
   function handleCheckout() {
     navigate(`/checkout`)
@@ -64,10 +64,12 @@ useEffect(() => {
 //  setYourCartItems(filteredItems)
 
 
-console.log(cartItems, 'cartItems')
- if (!cartItems) {
-  <h1> Loading..</h1>
- }
+// console.log(cartItems, 'cartItems')
+//  if (!user) {
+//   <h1> Loading..</h1>
+//  }
+//  console.log(user && user.cart ? user.cart.cart_items : "hello" ) 
+
 
   return (
     <>
@@ -92,76 +94,64 @@ console.log(cartItems, 'cartItems')
           <Modal.Title style={{"textDecoration":"none", "margin-left": "1000px", color:"#45A29E"}}>Your Cart</Modal.Title>
         </Modal.Header> */}
 
-        <Modal.Body>
-        <Row xs={1} md={4} className="g-4" style={{flex: 1, display: 'flex', flexDirection: 'row'}}>
+        {/* <Modal.Body>
+        <Row xs={1} md={4} className="g-4" style={{flex: 1, display: 'flex', flexDirection: 'row'}}> */}
           
-        {/* { cartItems && cartItems.length > 0 ? cartItems.map((cartitem, idx) => {
-          console.log(cartitem, 'cartitem') */}
+        {/* { cartItems && cartItems.length > 0 ? 
+        cartItems.map((item, idx) => ( */}
+          {/* console.log(cartitem, 'cartitem') */}
           
-          { cartItems && cartItems.length > 0 ? cartItems.map((cartitem, idx) => {
-            console.log(cartitem, 'cartitem')
+          // {/* { user && user.cart && user.cart.cart_items && user.cart.cart_items.length > 0 ? user.cart.cart_items.map((cartitem, idx) => {
+          //   console.log(cartitem, 'cartitem') */}
 
+            
 
-
-
-
-
-          return cartitem.item ? ( 
+{/* 
+            // return user.cart.cart_itemm ? ( 
+          }  return(
+                            // return cartitem.item ? ( 
           
                <div className='cart-card' key={idx}>
                 
 
-              {cartitem.item.image_url ? <Card.Img style={{ width: '20rem' , 'margin-right':'110px',display: 'flex', flexDirection: 'row' }} variant="top" src={cartitem.item.image_url} key={idx}/>: null}
+              {cartitem.image_url ? <Card.Img style={{ width: '20rem' , 'margin-right':'110px',display: 'flex', flexDirection: 'row' }} variant="top" src={cartitem.item.image_url} key={idx}/>: null} */}
            
              
 
 
 
 
-                
-                <Card.Title>{cartitem.item.title}</Card.Title>
-                <Card.Text >
-                  Name: {cartitem.item.title}
-                  <br/>
-                  Description: {cartitem.item.description}
-                  <br/>
-                  ${cartitem.item.price}
-                  <br/>
-                  Quantity: 1
-                  <button className='cart-card-button' align='center' style={{ width: 'auto' }} onClick={() => handleDeleteItem(cartitem.id)} >Remove from Cart</button>
-                  </Card.Text>
-                  
-                
-          
-              
-                  </div>
-      
-            
-          ) //closing paranthesis 
-          :null
-          
-          }
-          
-          ): 
-          
-          null 
-          
-          }  </Row>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <div className="subtotal-price">Total: ${cartTotalPrice}.00</div>
-          <div align="center">
+    <div>
+      {user ?
+        <div>
+          <div>
+            <h2 align="center" >Cart</h2>
+            {cartItems.map((item, idx) => (
+              // <div className='cards__item'>
+              <div className='cart-card' key={idx} >
+                <img src={item.image_url} alt={item.title} className='cart-image' ></img>
+                <p>{item.title}</p>
+                <p>${item.price}</p>
+                <button className='cart-card-button' align='center' style={{ width: 'auto' }} onClick={() => handleDeleteItem(item.id)} >Remove From Cart</button>
+                {/* <p>Total: {parseInt(item.price, 10)}.sum}</p> */}
+              </div>
+              // </div>
+            ))}
+            <div align="center">
               <p> Total: ${cartTotalPrice}.00 </p>
               <button className="cart-card-button" align="center" onClick={handleCheckout} >Checkout</button>
             </div>
-          <br></br>
-          {/* <Button variant="secondary" onClick={handleClose}>Close</Button> */}
-          {/* <CheckoutButton price={totalPrice} setTotalPrice={setTotalPrice} setCart={setCart} onClick={handleCheckout} >Checkout</CheckoutButton> */}
-        </Modal.Footer>
-      {/* </Modal> */}
+          </div>
+        </div>
+        :
+        <div align="center">
+          <h2 className="no-cart-text">Please login to view cart.</h2>
+          <button className='form-button' onClick={() => navigate('/login')}>Login</button>
+        </div>
+      }
+      
+    </div>
     </>
-  )
-}
-
+    
+  )}
 export default Cart

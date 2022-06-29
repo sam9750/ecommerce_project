@@ -25,29 +25,30 @@ const navigate = useNavigate()
     // setLoading(true)
    
     
-    fetch('/login',{
+    fetch('/login', {
         method: 'POST',
-        headers: {"Content-Type" : "application/json", "Accept" : "application/json"},
+        headers: {"Content-Type" : "application/json", "Accept" : "application/json"
+    },
         body :JSON.stringify({ username, password}) 
     })
     .then(data => { 
-        
-        // setLoading(false);
-
+      
         if (data.ok){
 
-            data.json().then(l=>  handleLogin(l))
-                // history.push("/items", user)})
+            data.json().then(user => {
                 setUser(user) 
+                
+                
                 setIsAuthenticated(true)
                 setCartItems(cartItems)
                 setLoggedIn(true)
                 navigate("/")
-        } else {
-            data.json().catch(err=> {
-                setError( "wrong email")
+        })
+     } else {
+            data.json()
+            .then(json => setError(json.error))
                 // setOkay("wrong password")
-            })
+            
         }
     })
 
@@ -119,7 +120,7 @@ const navigate = useNavigate()
                 <button className='nav-button' type="button">Create One!</button>
             // </Link> </div> */} 
 
-<label style={{ fontSize: "20px", padding: "0px" }} disabled={!username || !password}> Don't have an account? </label>
+    <label style={{ fontSize: "20px", padding: "0px" }} disabled={!username || !password}> Don't have an account? </label>
                 <Link to="/signup">
                     <button className='form-button' > Sign Up Now! </button>
                 </Link>

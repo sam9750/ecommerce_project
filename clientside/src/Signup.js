@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 // import { BrowserRouter as Router } from "react-router-dom";
 import { useNavigate } from 'react-router'
 
+
+
 function SignUp({setIsAuthenticated, setUser}) {
+    
     const navigate = useNavigate()
     const [newName, setNewName] = useState("Enter name...")
     const [newUsername, setNewUsername] = useState("Enter Username...")
@@ -42,7 +45,7 @@ function SignUp({setIsAuthenticated, setUser}) {
         setSubmitted(false);
     };
 
-    const handlePassConfirmation = (e) => {
+    const handlePasswordConfirmation = (e) => {
         setPasswordConfirmation(e.target.value);
         setSubmitted(false);
     };
@@ -69,15 +72,15 @@ function SignUp({setIsAuthenticated, setUser}) {
                 username: newUsername
             })
         })
-        .then(res => 
-           { if(res.ok) {
-               res.json()
-               .then(user => 
-                { console.log(user)
-                    setUser(user)
-               setIsAuthenticated(true)
-            //    setUser(user),
-               return navigate(`/`)})
+        .then(res => {
+            if (res.ok) {
+                res.json()
+                    .then(user => setNewUsername(user))
+                return res.json().then(body => setNewUsername(body)) && navigate(`/`) 
+                
+            }
+        })
+               
 
             //    return res.json().then(body => 
             //     // setNewUsername(body),
@@ -85,8 +88,7 @@ function SignUp({setIsAuthenticated, setUser}) {
             //     setIsAuthenticated(true),
             // //    navigate(`/`)
             
-            }
-        })
+          
 
         if (newName === '' || newEmail === '' || newPassword === '' || birthdate === undefined) {
             e.preventDefault();
@@ -113,7 +115,8 @@ function SignUp({setIsAuthenticated, setUser}) {
                 style={{
                     display: submitted ? '' : 'none',
                 }}>
-                <h1 className='please' > User {newName} successfully registered!!</h1>
+                <h1 className='please' > User {newName} successfully registered!! </h1>
+                
             </div>
         );
     };
@@ -132,44 +135,39 @@ function SignUp({setIsAuthenticated, setUser}) {
     }
 
     return (
-        <div className="App">
-            <div className="App-header">
-            <div>
-                {errorMessage()}
-                {successMessage()}
-            </div>
-           
-                <div>
-                    <form>
-                        <div >
-                            <label></label>
-                            <input type="text" placeholder="Create Name" name="name" value={newName} onChange={handleNewName} required />
-                            <br></br>
-                            <label> </label>
-                            <input type="text" placeholder="Create Email" name="email" value={newEmail} onChange={handleNewEmail} required />
-                            <br></br>
-                            <label> </label>
-                            <input type="text" placeholder="Create Username" name="username" value={newUsername} onChange={handleNewUsername} required />
-                            <br></br>
-                            <label> </label>
-                            <input type="date" name="birthday" value={birthdate} onChange={handleNewBirthdate} required />
-                            <br></br>
-                        </div>
-                        <div>
-                            <label> </label>
-                            <input type="password" name="password" placeholder="Create Password" value={newPassword} onChange={handleNewPassword} required />
-                            <br></br>
-                            <label> </label>
-                            <input type="password" name="password" placeholder="Confirm Password" value={passwordConfirmation} onChange={handlePassConfirmation} required />
-                        </div>
-                        <div>
-                            <button className='nav-button' onClick={handleNewUser}> Create New Account!  </button>
-                        </div>
-                    </form>
+        <div align="center">
+            <form className="form-contdainer" onSubmit={handleNewUser}>
+                <div style={{ fontSize: 5, color: 'red' }}>
+                    {errorMessage()}
+                    {successMessage()}
                 </div>
-
-        
-            </div>
+                <div >
+                    <h1 className='form-name'>Create New Account</h1>
+                    <br></br>
+                    <label>Name </label>
+                    <input type="text" name="name" value={newName} onChange={handleNewName} required />
+                    <br></br>
+                    <label>Email </label>
+                    <input type="text" name="email" value={newEmail} onChange={handleNewEmail} required />
+                    <br></br>
+                    <label>Username </label>
+                    <input type="text" name="username" value={newUsername} onChange={handleNewUsername} required />
+                    <br></br>
+                    <label>Birthday </label>
+                    <input type="date" name="birthday" value={birthdate} onChange={handleNewBirthdate} required />
+                    <br></br>
+                </div>
+                <div>
+                    <label>Create Password: </label>
+                    <input type="password" name="password" value={newPassword} onChange={handleNewPassword} required />
+                    <br></br>
+                    <label>Confirm Password: </label>
+                    <input type="password" name="password_confirmation" value={passwordConfirmation} onChange={handlePasswordConfirmation} required />
+                </div>
+                <div>
+                    <button className='form-button' type="submit" > Create New Account! </button>
+                </div>
+            </form>
         </div>
     )
 }

@@ -6,22 +6,22 @@ class CartItemsController < ApplicationController
       render json: CartItem.all
     end
   
-def create
-    @cart.add_item(params)
+# def create
+#     @cart.add_item(params)
      
-    if @cart.save
-      redirect_to cart_path
-    else
-      flash[:error] = 'There was a problem adding this item to your cart.'
-      redirect_to @item
-    end
-  end
+#     if @cart.save
+#       redirect_to cart_path
+#     else
+#       flash[:error] = 'There was a problem adding this item to your cart.'
+#       redirect_to @item
+#     end
+#   end
 
 
-  # def destroy
-  #   @cart_item.destroy
-  #   redirect_to cart_path
-  # end
+#   # def destroy
+#   #   @cart_item.destroy
+#   #   redirect_to cart_path
+#   # end
 
 
   def destroy
@@ -31,11 +31,11 @@ def create
   end
 
   
-  private 
+#   private 
 
-  def cart_item_params 
-      params.permit(:title, :description, :quantity, :price)
-  end
+#   def cart_item_params 
+#       params.permit(:title, :description, :quantity, :price)
+#   end
 
 
 end

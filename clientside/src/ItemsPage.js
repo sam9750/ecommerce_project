@@ -1,4 +1,4 @@
-import React, { } from 'react'
+import React, {useEffect } from 'react'
 // import {useHistory} from "react-router-dom"
 // import {Col, Row, Container} from "react-bootstrap"
 import Item from './Item'
@@ -7,35 +7,47 @@ import Logo from './saleabstract-geometric-sale-banner-design-template-for-promo
 import { useNavigate } from 'react-router-dom'
 
 
-function ItemsPage({ user, setItemsRetrieved, handleItems, items, cart, setCart, setCartItems, totalPrice, setTotalPrice, authorized, cartItems, handleLogout, isAuthenticated }) {
+function ItemsPage({ user, setItems, setItemsRetrieved, handleItems, items, cart, setCart, setCartItems, totalPrice, setTotalPrice, authorized, cartItems, handleLogout, isAuthenticated }) {
 let navigate = useNavigate()
-    // const [items, setItems] = useState([])
+//     // const [items, setItems] = useState([])
 
 
-    // let history = useHistory()
+//     // let history = useHistory()
     
-    // if(!authorized) {
-    //     return <Redirect to="/" />
-    // }
+//     // if(!authorized) {
+//     //     return <Redirect to="/" />
+//     // }
   
 
-    // useEffect(() => {
-    //     if(!user) { <ItemsPage  //render items on page, if not useHistory to navigate to different page
+//     // useEffect(() => {
+//     //     if(!user) { <ItemsPage  //render items on page, if not useHistory to navigate to different page
             
         
-    // }, [])
+//     // }, [])
 
-    // useEffect(() => {
-    //     fetch('/items')
-    //     .then((r) => r.json())
-    //     .then(data => console.log(data));
-    //   }, []);
+//     // useEffect(() => {
+//     //     fetch('/items')
+//     //     .then((r) => r.json())
+//     //     .then(data => console.log(data));
+//     //   }, []);
       
     
-     console.log(cartItems)
-   console.log(isAuthenticated)
+//      console.log(cartItems)
+//    console.log(isAuthenticated)
 
 
+//    useEffect(() => {
+//     fetch("/items").then((res) => {
+//       if (res.ok) {
+//         res.json().then((items) => {
+//           setItems(items);
+//           setItemsRetrieved(true)
+//         });
+//       }
+//     })
+
+
+//   }, [])
 
 
 
@@ -54,43 +66,30 @@ let navigate = useNavigate()
           <button className='nav-button' onClick={handleLogout} >Logout</button>
                            
       </div>
-  
-        
-        { isAuthenticated ? 
-
-          <div>
 
 
-            <div className="cards" style={{ display: 'flex' }}>
-
-                {items.map((item) => ( 
-                    <Item items={items}
-                        key={item.id} 
-                        item={item} 
-                        cart={cart}
-                        setCart={setCart}
-                        user={user}
-                        setCartItems={setCartItems}
-                        cartItems={cartItems}
-                        handleItems = {handleItems} />)
-                        )
-                      }
-
-                </div>
-
-              </div>  
-                 
-            
-            
-
-              : 
-              <div> <p> Please... </p>  <Link to="/Login"><button className='nav-button'>Login!</button></Link>  </div>}
-              
-              </div>
-                )
-              
+  <div>
+      <div>
+      {/* <img src={frontPic} alt='sports home' className='front-pic' /> */}
+      </div>
+      <div className="item-list">
+          <h3 align="center">All Items</h3>
+          {items.map((item) => (
+              <Item
+                  key={item.id}
+                  item={item}
+                  cart={cart}
+                  setCart={setCart}
+                  user={user}
+                  setCartItems={setCartItems}
+                  cartItems={cartItems}
+              />
+          ))}
+      </div>
+  </div>
+  </div>
+)
 }
-
 
 
 

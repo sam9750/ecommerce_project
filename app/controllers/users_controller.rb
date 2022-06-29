@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+    # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-    skip_before_action :authorize, only: [:create]
-    wrap_parameters format: []
+    # skip_before_action :authorize, only: [:create]
+    # wrap_parameters format: []
 
-    def index
-      users = User.all
-      render json: users
-    end
+    # def index
+    #   users = User.all
+    #   render json: users
+    # end
   
     def show
       user = User.find_by(id: session[:user_id])
       if user 
-         render json: user, status: :created 
+         render json: user
+        #  status: :created 
       else
         render json: { error: "Not authorized" }, status: :unauthorized
       end
@@ -31,10 +32,10 @@ class UsersController < ApplicationController
       render json: total
     end
   
-    def delete_cart_item
+    def destroy
       # debugger
       current_item = current_user.cart.cart_items
-      i = item.find_by(item_id: params[:id])
+      i = current_item.find_by(item_id: params[:id])
       if i
         i.destroy
         head :no_content
@@ -46,10 +47,19 @@ class UsersController < ApplicationController
   
     def create
       user = User.create!(user_params)
-      session[:current_user] = user.id
-      render json: user, status: :created
+      if user
+        session[:user_id] = user.id 
+          render json: {
+              status: :created,
+              user: user
+          }
+      else
+        render json: { error: user.errors.messages }, status: 422
+      end
     end
   
+
+
     def update
       user = User.find(params[:id])
       if user.update!(user_params)

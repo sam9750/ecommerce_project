@@ -94,7 +94,7 @@ function App() {
 
 
   }, [])
-    ;
+    
 
  
   
@@ -117,7 +117,7 @@ function App() {
       })
   }, [user, ])
 
-
+console.log(isAuthenticated)
 
 
   function handleLogin() {
@@ -208,11 +208,14 @@ function App() {
 
         <Route path="/items" element= {<ItemsPage items={items} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}  
             authorized={false} user={user}
-              itemsRetrieved = {itemsRetrieved}
+              itemsRetrieved={itemsRetrieved}
+              setItemsRetrieved={setItemsRetrieved}
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
               cart={cart}
-              setCart={setCart} cartItems={cartItems} setCartItems={setCartItems} />} />
+              setCart={setCart} cartItems={cartItems} setCartItems={setCartItems}
+              setItems={setItems 
+              } />} />
 
           {/* // <Route path="create-user" element={<SignUp />} />
           // <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} /> */}

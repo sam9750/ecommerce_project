@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # resources :users
   resources :items, only: [:index, :show]
   resources :sessions, only: [:create]
+  resources :registrations, only: [:create]
   resources :carts, only: [:index, :show]
   resources :cart_items, only: [:index, :show, :destroy, :create]
   resources :orders, only: [:create, :show, :index]
@@ -14,7 +15,9 @@ Rails.application.routes.draw do
   get "/users", to: "users#index"
   # get "/items", to: "items#index"
   post "/signup", to: "users#create"
-  get "/me", to: "users#create"
+  # get "/me", to: "users#create"
+
+  patch 'user/update', to: "users#update"
 
   
 

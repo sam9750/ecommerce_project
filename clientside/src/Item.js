@@ -10,25 +10,21 @@ function Item({ user, item, items, cart, setCart, cartItems, totalPrice, setTota
 
 
 
-  function handleAddToCart() {
-console.log(cartItems.length)
-      if (user) {
+   function handleAddToCart() {
+        // console.log(user)
+        if (user) {
           fetch("/cartorder", {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(item),
           })
               .then(resp => resp.json())
-              .then(newItem => {
-                  // setCartItems(cart)
+              .then(cart => {
+                  setCartItems(cart)
                   // console.log(cart)
                   // console.log(item)
-                  
-                  setCartItems([...cartItems, newItem])
-                  console.log(cartItems.length)
-                  // handleItems(item)
-
-                  
+                  console.log(cart)
+                  setAddedToCart(true)
                   setDisable(true)
               })
       }

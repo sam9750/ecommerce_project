@@ -1,7 +1,8 @@
 class CartsController < ApplicationController
     def index
       carts = Cart.all
-      render json: carts, include: [:cart_items]
+      render json: carts, 
+      # include: [:cart_items]
     end
   
     def show
