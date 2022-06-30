@@ -5,7 +5,7 @@ import { Button, Card } from 'react-bootstrap';
 function Item({ user, item, items, cart, setCart, cartItems, totalPrice, setTotalPrice, setCartItems, handleItems}) {
   const [addedToCart, setAddedToCart] = useState(false)
   const [disable, setDisable] = useState(false)
-  console.log(cartItems.length)
+  console.log('look here', item)
 
 
 
@@ -22,7 +22,7 @@ function Item({ user, item, items, cart, setCart, cartItems, totalPrice, setTota
               .then(cart => {
                   setCartItems(cart)
                   // console.log(cart)
-                  // console.log(item)
+                  console.log(item)
                   console.log(cart)
                   setAddedToCart(true)
                   setDisable(true)

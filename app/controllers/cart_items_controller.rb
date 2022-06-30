@@ -2,9 +2,23 @@ class CartItemsController < ApplicationController
   
     # before_action :set_order
 
+    # def index
+    #   render json: CartItem.all
+    # end
+
+
+    before_action :authorize
+
+    # def index
+    #   render json: current_user.cart_items.all
+    # end
+
     def index
-      render json: CartItem.all
+      render json: current_user.cart.cart_items
+
     end
+
+
   
 # def create
 #     @cart.add_item(params)

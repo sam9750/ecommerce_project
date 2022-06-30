@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 
 
 
-function SignUp({setIsAuthenticated, setUser}) {
+function SignUp({setIsAuthenticated, setLoggedIn, setUser}) {
     
     const navigate = useNavigate()
     const [newName, setNewName] = useState("Enter name...")
@@ -72,14 +72,32 @@ function SignUp({setIsAuthenticated, setUser}) {
                 username: newUsername
             })
         })
+        // .then(res => {
+        //     if (res.ok) {
+        //         res.json()
+        //             .then(user => setNewUsername(user))
+        //         return res.json().then(body => setNewUsername(body)) && navigate(`/`) 
+                
+        //     }
+        // })
+
         .then(res => {
+            console.log(res);
             if (res.ok) {
                 res.json()
-                    .then(user => setNewUsername(user))
-                return res.json().then(body => setNewUsername(body)) && navigate(`/`) 
-                
+                    .then(resp => {
+                        setUser(resp.user)
+                        setIsAuthenticated(true)
+                        setLoggedIn(true)
+                        navigate("/")
+                        navigate(`/`)
+                    })
             }
         })
+
+
+
+
                
 
             //    return res.json().then(body => 

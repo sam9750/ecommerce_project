@@ -2,6 +2,9 @@ class User < ApplicationRecord
     # has_many :carts
     has_many :orders
     # has_one :cart
+  
+    has_many :carts, through: :orders
+    has_many :cart_items, through: :carts
 
     has_secure_password
      # Validations: username

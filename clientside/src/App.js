@@ -108,14 +108,29 @@ function App() {
       })
   }, [user, cartItems.length ])
 
+  // useEffect(() => {
+  //   fetch('/cart')
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         res.json().then(yourCartItems => setYourCartItems(yourCartItems))
+  //       }
+  //     })
+  // }, [user, ])
+
   useEffect(() => {
     fetch('/cart')
       .then((res) => {
         if (res.ok) {
-          res.json().then(yourCartItems => setYourCartItems(yourCartItems))
+          res.json().then(cart => setCart(cart))
         }
       })
-  }, [user, ])
+  }, [ ])
+
+
+
+
+
+
 
 console.log(isAuthenticated)
 
@@ -203,7 +218,7 @@ console.log(isAuthenticated)
           />
 
           <Route path="/signup"
-            element={<SignUp setUser={setUser} user={user} setIsAuthenticated={setIsAuthenticated} />}
+            element={<SignUp setUser={setUser} user={user} setIsAuthenticated={setIsAuthenticated} setLoggedIn={setLoggedIn} />}
           />
 
         <Route path="/items" element= {<ItemsPage items={items} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}  
