@@ -22,7 +22,7 @@ function Header ({user, onLogout}){
 
 
 
-        <div className="logo">
+        <div >
             <h1 className= "header">Welcome to FunnyWear </h1>
             <h2 className= "header2">Punny Shirts to Have A Laugh </h2>
 

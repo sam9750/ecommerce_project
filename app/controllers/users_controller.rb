@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-    # skip_before_action :authorize, only: [:create]
+    skip_before_action :authorize, only: [:create]
     # wrap_parameters format: []
 
     # def index

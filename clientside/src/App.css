@@ -4,6 +4,7 @@ html {
     height:max-content;
   }
   
+  
   .App-header {
     background-color: white;
     min-height: 6vh;
@@ -505,3 +506,5 @@ html {
   .profile {
     color: black;
   }
+
+  

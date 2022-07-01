@@ -89,6 +89,7 @@ function App() {
     fetch("/items").then((res) => {
       if (res.ok) {
         res.json().then((items) => {
+          console.log('ARE THEY THERE?' , items)
           setItems(items);
           setItemsRetrieved(true)
         });
@@ -96,7 +97,7 @@ function App() {
     })
 
 
-  }, [])
+  }, [user])
 
 
 

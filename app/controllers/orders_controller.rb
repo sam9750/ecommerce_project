@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
     end
 
     def checkout
+    
       co = current_user.order
     co_order = co.update!(:checked_out => true)
     render json: co_order
