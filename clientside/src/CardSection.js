@@ -20,10 +20,12 @@ const CARD_ELEMENT_OPTIONS = {
     },
   },
 };
-function CardSection() {
+function CardSection({totalPice}) {
   return (
+
     <label align="center">
-      Card details
+      <h2>Amount: {totalPice}</h2>
+      <h3>Card details</h3>
       <CardElement options={CARD_ELEMENT_OPTIONS} />
     </label>
   );

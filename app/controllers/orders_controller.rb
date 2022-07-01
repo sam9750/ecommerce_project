@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  
+  before_action :authorize
   # def create
   #   order = Order.create!(order_params)
   #   render json: order, status: :created
@@ -11,13 +11,13 @@ class OrdersController < ApplicationController
       orders = Order.all
       render json: orders
     end
-  
+
     def show
-      
+
       render json: current_user.cart.items
 
     end
-  
+
     def cart_items
       if (order[checked_out: false])
         order = Order.find(params[checked_out: false])
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
         render json: order.cart.items
       end
     end
-  
+
     def checkout
       co = current_user.order
     co_order = co.update!(:checked_out => true)
@@ -35,21 +35,23 @@ class OrdersController < ApplicationController
       # current_order = current_user.order.update!(:checked_out => true)
       # render json: current_order
     end
-  
-    
+
+
     def charge
       Stripe.api_key = "sk_test_51L7ny5BqFuEnTEglwRQwAa7tgWXKEJaoT0bzJo6okb7EJAeMbKnZgkOdUwlTPDDH1J2pCD6bYQg7mvj2Jq7pC3yZ0086dwKylo"
-      token = params[:stripeToken]
+      token = params[:token]
+      amount = params[:amount]
       charge = Stripe::Charge.create({
-        amount: 100,
+        amount: amount,
         currency: "usd",
         description: "Example charge",
         source: token,
       })
+      render json: charge
     end
-  
+
     private
-  
+
     def order_params
       params.permit(:checked_out, :user_id, :order_id, :cart_id)
     end

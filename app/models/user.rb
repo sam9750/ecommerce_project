@@ -13,6 +13,22 @@ class User < ApplicationRecord
      # Validations: password
      validates :password, presence: true, on: :create 
      validates :password, length: { minimum: 2 }, on: :create
+
+
+    #  pay_customer stripe_attributes: :stripe_attributes
+
+    #  def stripe_attributes(pay_customer)
+    #   {
+    #     address: {
+    #       city: pay_customer.owner.city,
+    #       country: pay_customer.owner.country
+    #     },
+    #     metadata: {
+    #       pay_customer_id: pay_customer_id,
+    #       user_id: id
+    #     }
+    #   }
+    # end 
      
 #      def order
 #         self.orders.find_by(checked_out: false)

@@ -20,7 +20,7 @@ useEffect(() => {
 
     const newOrder = {
         total_price: order.total_price,
-        ordered: order.ordered 
+        ordered: order.ordered
     }
 
     function onCreateOrder(newOrder) {
@@ -30,9 +30,9 @@ useEffect(() => {
     const onSuccess = token => {
         console.log(token);
         alert('Order placed!');
-    
-        
-    
+
+
+
         fetch(`/orders`, {
             method: "POST",
             headers: {
@@ -47,9 +47,9 @@ useEffect(() => {
         })
 
         afterSuccessfulPayment();
-        
+
     };
-    
+
     const afterSuccessfulPayment = () => {
         setTotalPrice(0);
         setCart([])

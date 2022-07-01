@@ -80,3 +80,5 @@ end
 gem "stripe", "~> 6.4"
 
 gem "net-http", "~> 0.2.2"
+
+gem "pay", "~> 4.0"

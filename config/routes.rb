@@ -10,6 +10,13 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:index, :show, :destroy, :create]
   resources :orders, only: [:create, :show, :index]
 
+  resources :submissions
+  resources :payment_intents
+  resources :webhooks, only: [:create]
+
+  root 'submissions#index'
+
+
 
   # root "articles#index"
   get "/users", to: "users#index"
@@ -44,6 +51,11 @@ Rails.application.routes.draw do
   delete "/cart_items/:id", to: "cart_items#destroy"
   
   patch "/checkout", to: "orders#checkout"
+
+  get 'checkouts', to: 'checkouts#show'
+  get 'checkouts/success', to: 'checkouts#success'
+  get 'billing', to: 'billing#show'
+
 
   post "/charge", to: "orders#charge"
 

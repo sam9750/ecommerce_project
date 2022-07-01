@@ -1,22 +1,29 @@
 class CartItemsController < ApplicationController
   
     # before_action :set_order
+    before_action :authorize
+
 
     # def index
     #   render json: CartItem.all
     # end
 
+    def index
 
-    before_action :authorize
+      render json: current_user.cart_items.where(orders: {checked_out: false }).all
+
+    end
+
+    
 
     # def index
     #   render json: current_user.cart_items.all
     # end
 
-    def index
-      render json: current_user.cart.cart_items
+    # def index
+    #   render json: current_user.cart.cart_items
 
-    end
+    # end
 
 
   
@@ -37,6 +44,12 @@ class CartItemsController < ApplicationController
 #   #   redirect_to cart_path
 #   # end
 
+
+  # def destroy
+  #   cart_item = CartItem.find(params[:id])
+  #   cart_item.destroy
+  #   head :no_content
+  # end
 
   def destroy
     cart_item = CartItem.find(params[:id])

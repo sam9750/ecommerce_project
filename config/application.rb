@@ -16,7 +16,7 @@ module HomeSittingApplication
 
     config.action_dispatch.cookies_same_site_protection = :strict
     # allows us to only accept cookies that are running on the same domain as our
-
+    config.action_mailer.default_url_options = { host: "http://localhost:3000" }
 
 
   end
