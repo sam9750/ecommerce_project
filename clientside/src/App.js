@@ -108,7 +108,7 @@ function App() {
         if (res.ok) {
           res.json().then(cartItems => {
             setCartItems(cartItems)
-            setTotalPrice(cartItems.reduce((total, ci) => total + ci.item.price,0))
+            setTotalPrice(cartItems.reduce((total, ci) => total + ci.item.price, 0))
           })
         }
       })
@@ -233,8 +233,7 @@ console.log(isAuthenticated)
               setItems={setItems
               } />} />
 
-          {/* // <Route path="create-user" element={<SignUp />} />
-          // <Route path="/profile" element={<OwnUserProfile isAuthenticated={isAuthenticated} user={user} />} /> */}
+         
 
           <Route path="/checkout" element={<Checkout handleCheckout={handleCheckout} totalPrice={totalPrice} />} />
           <Route path="/cart"

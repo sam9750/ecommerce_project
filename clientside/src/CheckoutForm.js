@@ -1,7 +1,8 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
-import CardSection from './CardSection';
+import CreditCardDetails from './CreditCardDetails';
 import {useNavigate} from "react-router-dom";
+
 // import Item from './Item';
 
 export default function CheckoutForm({handleCheckout,totalPrice}) {
@@ -57,7 +58,7 @@ export default function CheckoutForm({handleCheckout,totalPrice}) {
   return (
     <div align="center">
     <form onSubmit={handleSubmit} className="form-container">
-      <CardSection totalPice={totalPrice} />
+      <CreditCardDetails totalPrice={totalPrice} />
       <button disabled={!stripe} className="form-button">Confirm order</button>
     </form>
     </div>

@@ -6,7 +6,7 @@ import React from "react";
 
 // Make sure to call `loadStripe` outside of a component's render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_test_51L7ny5BqFuEnTEglvhz8Yl6yDBV2Ai891QkyaGjJmM2Rp0tR3FuAcdA8CJamSZcWndv6NYxxpMUnBNZqTAg3N3cv000rQJe8Y5');
+const stripePromise = loadStripe('pk_test_51LGmiQCkxGwbXGjyn3ILpe08hPQUtVbQ5HwWnFZ57UhKi3O5NGzADC5gU0ACY5U7CckK1ylt57pUj0gVygib2FJY008WDvU3ho');
 
 function Checkout({handleCheckout, totalPrice}) {
   return (
