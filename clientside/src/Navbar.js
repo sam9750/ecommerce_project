@@ -16,7 +16,7 @@ function Navbar({ onLogout, setCart }) {
     return (
         <div>
             <div className='App-header' align='center'>
-                <Link to="/"><img  alt="logo" width={100} className="brand-logo" /></Link>
+                <Link to="/"><img src={Logo} alt="logo" width={100} className="brand-logo"/></Link>
             </div>
             <div className='App-header' align='center'>
                 <Link to="/"><button className='nav-button'>Home</button></Link>
@@ -26,7 +26,7 @@ function Navbar({ onLogout, setCart }) {
                 <Link to="/items"><button className='nav-button'>Items</button></Link>
                 <Link to="/Login"><button className='nav-button'>Login</button></Link>
                 <button className='nav-button' onClick={handleLogout} >Logout</button>
-                                 
+
             </div>
         </div>
     )
@@ -61,15 +61,15 @@ export default Navbar
 
 // {/* <nav className="navbar navbar-expand-lg navbar-light bg-#0B0B0B">
 // <div className="container-fluid">
- 
+
 //   <img src="./logo.png" width="150" height="50" alt=""/>
-  
+
 //     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 //       <span className="navbar-toggler-icon"></span>
 //     </button>
 //     <div className="collapse navbar-collapse" id="navbarNavAltMarkup" style={{width:"100%"}}>
 //       <div className="navbar-nav" style={{width:"100%"}}>
-        
+
 //         <NavItem>
 //           <NavLink
 //             to="/items"
@@ -80,13 +80,13 @@ export default Navbar
 //             MERCH
 //           </NavLink>
 //         </NavItem>
-       
-        
+
+
 //         <div className="ms-auto" style={{display:"inline-flex"}}>
 //           <NavItem>
 //             <Cart
 //               item={item}
-//               setCart={setCart} 
+//               setCart={setCart}
 //               cart= {cart}
 //               totalPrice={totalPrice}
 //               setTotalPrice={setTotalPrice}
@@ -95,7 +95,7 @@ export default Navbar
 //           <NavItem>
 //           <NavLink exact to="/Login"><button className='nav-button'>Login</button></NavLink>
 //           </NavItem>
-            
+
 //         </div>
 //       </div>
 //     </div>

@@ -1,14 +1,15 @@
 class CartItemsController < ApplicationController
-  
+
     # before_action :set_order
+    before_action :authorize
 
     def index
-      render json: CartItem.all
+      render json: current_user.cart_items.where(orders: {checked_out: false }).all
     end
-  
+
 # def create
 #     @cart.add_item(params)
-     
+
 #     if @cart.save
 #       redirect_to cart_path
 #     else
@@ -30,10 +31,10 @@ class CartItemsController < ApplicationController
     head :no_content
   end
 
-  
-#   private 
 
-#   def cart_item_params 
+#   private
+
+#   def cart_item_params
 #       params.permit(:title, :description, :quantity, :price)
 #   end
 
@@ -49,25 +50,25 @@ end
 #       @order.save
 #       session[:order_id] = @order.id
 #     end
-  
+
 #     def update
 #       @order_item = @order.order_items.find(params[:id])
 #       @order_item.update_attributes(order_params)
 #       @order_items = current_order.order_items
 #     end
-        
+
 #     def destroy
 #       @order_item = @order.order_items.find(params[:id])
 #       @order_item.destroy
 #       @order_items = current_order.order_items
 #     end
-  
+
 #     private
-  
+
 #     def order_params
 #       params.require(:order_item).permit(:product_id, :quantity)
 #     end
-  
+
 #     def set_order
 #       @order = current_order
 #     end

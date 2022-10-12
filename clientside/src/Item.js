@@ -31,12 +31,12 @@ function Item({ user, item, items, cart, setCart, cartItems, totalPrice, setTota
       else {
           return "Please login to add to cart."
       }
-  
+
     }
 
 
   return (
-    
+
 <Card>
         <Card.Img variant="top" src={item.image_url} style={{height:"396px", "object-fit":"contain"}}/>
         <Card.Body style={{height:"250px"}}>
@@ -48,14 +48,14 @@ function Item({ user, item, items, cart, setCart, cartItems, totalPrice, setTota
             <br/>
             {item.quantity ? "In Stock" : null}
           </Card.Text>
-          <Button> {addedToCart ?
+          <div> {addedToCart ?
       <button disabled={disable} className={'form-button-disabled'} >Added to Cart</button>
       :
-      <button onClick={handleAddToCart} className={'form-button'} >Add to Cart</button> }</Button>
+      <button onClick={handleAddToCart} className={'form-button'} >Add to Cart</button> }</div>
         </Card.Body>
     </Card>
-    
+
   );
-  
+
 }
 export default Item;

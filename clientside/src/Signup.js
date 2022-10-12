@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router'
 
 
 
-function SignUp({setIsAuthenticated, setUser}) {
-    
+function SignUp({setIsAuthenticated,setLoggedIn, setUser}) {
+
     const navigate = useNavigate()
     const [newName, setNewName] = useState("Enter name...")
     const [newUsername, setNewUsername] = useState("Enter Username...")
@@ -73,22 +73,27 @@ function SignUp({setIsAuthenticated, setUser}) {
             })
         })
         .then(res => {
+            console.log(res);
             if (res.ok) {
                 res.json()
-                    .then(user => setNewUsername(user))
-                return res.json().then(body => setNewUsername(body)) && navigate(`/`) 
-                
+                    .then(resp => {
+                        setUser(resp.user)
+                        setIsAuthenticated(true)
+                        setLoggedIn(true)
+                        navigate("/")
+                        navigate(`/`)
+                    })
             }
         })
-               
 
-            //    return res.json().then(body => 
+
+            //    return res.json().then(body =>
             //     // setNewUsername(body),
             //     console.log(body),
             //     setIsAuthenticated(true),
             // //    navigate(`/`)
-            
-          
+
+
 
         if (newName === '' || newEmail === '' || newPassword === '' || birthdate === undefined) {
             e.preventDefault();
@@ -97,14 +102,14 @@ function SignUp({setIsAuthenticated, setUser}) {
             setSubmitted(true);
             setError(false);
         }
-    
+
 
         setNewName('')
         setNewEmail('')
         setNewUsername('')
         setBirthdate('')
-        setPasswordConfirmation('') 
-    
+        setPasswordConfirmation('')
+
     }
 
     // Showing success message
@@ -116,7 +121,7 @@ function SignUp({setIsAuthenticated, setUser}) {
                     display: submitted ? '' : 'none',
                 }}>
                 <h1 className='please' > User {newName} successfully registered!! </h1>
-                
+
             </div>
         );
     };
@@ -125,7 +130,7 @@ function SignUp({setIsAuthenticated, setUser}) {
     const errorMessage = () => {
         return (
             <div
-                
+
                 style={{
                     display: error ? '' : 'none',
                 }}>
