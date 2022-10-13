@@ -80,9 +80,9 @@ gem "stripe", "~> 6.4"
 
 gem "net-http", "~> 0.2.2"
 
-group :development, :test do 
-   gem "sqlite3", "~> 1.4"    #gem to use in development-test environment
-end
+# group :development, :test do 
+#    gem "sqlite3", "~> 1.4"    #gem to use in development-test environment
+# end
 
 group :production do 
   gem "pg"        #gem to use in production environment
