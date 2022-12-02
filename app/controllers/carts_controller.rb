@@ -13,7 +13,7 @@ class CartsController < ApplicationController
       else
         render "Cart Empty"
       end
-    end
+    
   end
   
 
