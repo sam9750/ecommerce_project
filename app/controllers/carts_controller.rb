@@ -3,7 +3,7 @@ class CartsController < ApplicationController
       carts = Cart.all
       render json: carts
       # include: [:cart_items]
-    
+    end
   
     def show
       order = Order.find_by(checked_out: false)
@@ -13,7 +13,7 @@ class CartsController < ApplicationController
       else
         render "Cart Empty"
       end
-    
+    end
   end
   
 
@@ -21,4 +21,5 @@ class CartsController < ApplicationController
   #   def show
   #     @order_items = current_order.order_items
   #   end
-  end
+  # end
+  
