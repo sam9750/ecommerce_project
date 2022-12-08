@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :show, :index]
 
 
-  root "users#index"
+  # root "users#index"
   get "/users", to: "users#index"
   # get "/items", to: "items#index"
   post "/signup", to: "users#create"
