@@ -91,6 +91,5 @@ class UsersController < ApplicationController
     def order_params
       params.permit(:checked_out, :user_id)
     end
-    
-  end
+   end
   
