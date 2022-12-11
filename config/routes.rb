@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:index, :show, :destroy, :create]
   resources :orders, only: [:create, :show, :index]
 
-  root "users#index"
+  root "items#index"
   get "/users", to: "users#index"
   # get "/items", to: "items#index"
   post "/signup", to: "users#create"
