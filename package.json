@@ -25,7 +25,6 @@
     "node": "12.13.0"
   },
   "scripts": {
-    "build": "npm --cwd client install && yarn --npm client build",
     "deploy": "cp -a client/build/. public/"
     
   }
