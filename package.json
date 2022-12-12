@@ -36,7 +36,7 @@
     "scripts": {
       "clean": "rm -rf public",
       "build": "npm install --prefix clientside && npm run build --prefix clientside",
-      "deploy": "cp -a client/build/. public/",
+      "deploy": "cp -a clientside/build/. public/",
       "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
     }
   }
