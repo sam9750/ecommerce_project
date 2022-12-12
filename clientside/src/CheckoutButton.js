@@ -14,7 +14,7 @@ useEffect(() => {
     }, []);
 
     const getOrders = () => {
-        fetch("/orders")
+        fetch("https://ecommercesam.herokuapp.com/orders")
         .then((r) => r.json())
         .then(console.log);
     }

@@ -86,7 +86,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("/items").then((res) => {
+    fetch("https://ecommercesam.herokuapp.com/items").then((res) => {
       if (res.ok) {
         res.json().then((items) => {
           setItems(items);
@@ -103,7 +103,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch('/cart_items')
+    fetch('https://ecommercesam.herokuapp.com/cart_items')
       .then((res) => {
         if (res.ok) {
           res.json().then(cartItems => {
@@ -115,7 +115,7 @@ function App() {
   }, [user, cartItems.length ])
 
   useEffect(() => {
-    fetch('/cart')
+    fetch('https://ecommercesam.herokuapp.com/cart')
       .then((res) => {
         if (res.ok) {
           res.json().then(yourCartItems => setYourCartItems(yourCartItems))
@@ -151,7 +151,7 @@ console.log(isAuthenticated)
   // }
 
   useEffect(() => {
-    fetch('/totalPrice')
+    fetch('https://ecommercesam.herokuapp.com/totalPrice')
       .then((res) => {
         if (res.ok) {
           res.json()
