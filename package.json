@@ -17,16 +17,5 @@
     "react-scripts": "^5.0.1",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-js": "^1.1.2"
-  },
-
-  "name": "ecommerce_project_1",
-  "license": "MIT",
-  "engines": {
-    "node": "12.13.0"
-  },
-  "scripts": {
-    "deploy": "cp -a client/build/. public/"
-    
   }
-  
 }
