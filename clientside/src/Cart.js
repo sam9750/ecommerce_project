@@ -79,7 +79,7 @@ function Cart({setUser, setLoggedIn,handleItems, user, cart, totalPrice, setTota
     return (
         <>
             <div className='App-header' align='center'>
-                <Link to="/"><img src={Logo} alt="logo" width={100} className="brand-logo"/></Link>
+                <Link to="/"><img src={Logo} alt="logo" width={100} className="brand-logo-small"/></Link>
             </div>
             <div className='App-header' align='center'>
                 <Link to="/">
