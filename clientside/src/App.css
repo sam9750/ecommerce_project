@@ -27,6 +27,9 @@ html {
     border-radius: 50%;
     box-sizing: border-box;
     box-shadow: 7px 7px 10px #cbced1, -7px -7px -7px white;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
   
 .brand-logo-small {
