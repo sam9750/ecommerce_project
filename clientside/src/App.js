@@ -44,8 +44,6 @@ function App() {
     setCartItems(newItem)
     }
 
-
-
   console.log(user)
 
   // const redirectToLogin = () => {
@@ -145,6 +143,9 @@ console.log(isAuthenticated)
     setCart([])
     setCartItems([])
   }
+
+
+  
 
   // // function handleAuth(value) {
   // //   setIsAuthenticated(value);
