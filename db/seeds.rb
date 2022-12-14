@@ -1,8 +1,9 @@
 
     User.destroy_all
     Item.destroy_all
-    Order.destroy_all
+
     Cart.destroy_all
+    Order.destroy_all
     CartItem.destroy_all
     
 
