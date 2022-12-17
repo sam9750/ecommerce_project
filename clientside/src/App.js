@@ -44,6 +44,8 @@ function App() {
     setCartItems(newItem)
     }
 
+
+
   console.log(user)
 
   // const redirectToLogin = () => {
@@ -84,7 +86,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("https://ecommercesam.herokuapp.com/items").then((res) => {
+    fetch("/items").then((res) => {
       if (res.ok) {
         res.json().then((items) => {
           setItems(items);
@@ -101,7 +103,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch('https://ecommercesam.herokuapp.com/cart_items')
+    fetch('/cart_items')
       .then((res) => {
         if (res.ok) {
           res.json().then(cartItems => {
@@ -113,7 +115,7 @@ function App() {
   }, [user, cartItems.length ])
 
   useEffect(() => {
-    fetch('https://ecommercesam.herokuapp.com/cart')
+    fetch('/cart')
       .then((res) => {
         if (res.ok) {
           res.json().then(yourCartItems => setYourCartItems(yourCartItems))
@@ -143,9 +145,6 @@ console.log(isAuthenticated)
     setCart([])
     setCartItems([])
   }
-
-
-  
 
   // // function handleAuth(value) {
   // //   setIsAuthenticated(value);

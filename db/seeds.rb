@@ -1,9 +1,8 @@
 
     User.destroy_all
     Item.destroy_all
-
-    Cart.destroy_all
     Order.destroy_all
+    Cart.destroy_all
     CartItem.destroy_all
     
 
@@ -23,15 +22,15 @@
 
     puts "Seeding Items...."
         
-        i1 = Item.create!(location: "Address1", image_url: "https://m.media-amazon.com/images/I/71xNX+HQrAL._AC_UX679_.jpg", title: "Funcle Shirt", category: "Uncle", description: "100x better than an uncle.", price: 10, order_id: u1.id)
+        i1 = Item.create!(location: "Address1", image_url: "https://m.media-amazon.com/images/I/71xNX+HQrAL._AC_UX679_.jpg", title: "Funcle Shirt", category: "Uncle", description: "Faker::Lorem.paragraph", price: 10, order_id: u1.id)
        
-        i2 = Item.create!(location: "Address2", image_url: "https://m.media-amazon.com/images/I/A1ntnF3PJOL._CLa%7C2140%2C2000%7C71mT4TQux8L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679._SX._UX._SY._UY_.png", title: "Cheesy Shirt", category: "Cheese", description: "Finally, after browsing hundreds of shirts, you find one that doesn't stink!", price: 20, order_id: u2.id)
+        i2 = Item.create!(location: "Address2", image_url: "https://m.media-amazon.com/images/I/A1ntnF3PJOL._CLa%7C2140%2C2000%7C71mT4TQux8L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679._SX._UX._SY._UY_.png", title: "Cheesy Shirt", category: "Cheese", description: "Faker::Lorem.paragraph", price: 20, order_id: u2.id)
 
-        i3 = Item.create!(location: "Address3", image_url: "https://ctl.s6img.com/society6/img/C931lpQ2OzPDyEVSZ1v4facuX2g/w_700/tshirts/men/greybg/black/~artwork,bg_FFFFFFFF,fw_3302,fh_5096,fx_-407,fy_-46,iw_3900,ih_3409/s6-original-art-uploads/society6/uploads/misc/325c18d3eebc4376b9cb3a5d23e33965/~~/punny-pineapples-tshirts.jpg", title: "Pineapple Shirt", category: "Fruit", description: "Everything's pine now that you've stumbled upon this shirt! ", price: 30, order_id: u1.id)
+        i3 = Item.create!(location: "Address3", image_url: "https://ctl.s6img.com/society6/img/C931lpQ2OzPDyEVSZ1v4facuX2g/w_700/tshirts/men/greybg/black/~artwork,bg_FFFFFFFF,fw_3302,fh_5096,fx_-407,fy_-46,iw_3900,ih_3409/s6-original-art-uploads/society6/uploads/misc/325c18d3eebc4376b9cb3a5d23e33965/~~/punny-pineapples-tshirts.jpg", title: "Pineapple Shirt", category: "Fruit", description: "Faker::Lorem.paragraph", price: 30, order_id: u1.id)
 
-        i4 = Item.create!(location: "Address4", image_url: "https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C61zt9K4Cw4L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UX679_.png", title: "Tangerine", category: "Fruit", description: "For the Mathletes.", price: 40, order_id: u1.id)
+        i4 = Item.create!(location: "Address4", image_url: "https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C61zt9K4Cw4L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UX679_.png", title: "Tangerine", category: "Fruit", description: "Faker::Lorem.paragraph", price: 40, order_id: u1.id)
 
-        i5 = Item.create!(location: "Address5", image_url: "https://i0.wp.com/shirts-n-giggles.com/wp-content/uploads/2017/01/mockup-f7821e65.jpg?fit=600%2C600&ssl=1", title: "Chemistry Shirt", category: "Science", description: "Looks like you've got great chemistry with this shirt!", price: 50, order_id: u3.id )
+        i5 = Item.create!(location: "Address5", image_url: "https://i0.wp.com/shirts-n-giggles.com/wp-content/uploads/2017/01/mockup-f7821e65.jpg?fit=600%2C600&ssl=1", title: "Chemistry Shirt", category: "Science", description: "Faker::Lorem.paragraph", price: 50, order_id: u3.id )
 
     puts "Done Items...."
 
