@@ -42,7 +42,7 @@ default: &default
 
 development:
   <<: *default
-  database: HEROKU_POSTGRESQL_GOLD_U
+  database: vwwaspiwhqdnqp
   host: localhost
   port: 5432
   username: samtimus
