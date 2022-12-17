@@ -51,6 +51,6 @@ development:
   production: 
     <<: *default
     database: HEROKU_POSTGRESQL_GOLD_U
-    url: <%= ENV['DATABASE_URL'] %>
+    url: <%= ENV['HEROKU_POSTGRESQL_GOLD_URL'] %>
 
   POSTGRES_HOST_AUTH_METHOD: trust
