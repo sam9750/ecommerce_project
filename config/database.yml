@@ -40,17 +40,26 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-development:
+# development:
+#   <<: *default
+#   database: vwwaspiwhqdnqp
+#   host: localhost
+#   port: 5432
+#   username: samtimus
+#   password: '123'
+
+  production:
   <<: *default
   database: vwwaspiwhqdnqp
   host: localhost
   port: 5432
   username: samtimus
   password: '123'
+  url: <%= ENV['DATABASE_URL'] %>
 
-  production: 
-    <<: *default
-    database: HEROKU_POSTGRESQL_GOLD_U
-    url: <%= ENV['HEROKU_POSTGRESQL_GOLD_URL'] %>
+  # production: 
+  #   <<: *default
+  #   database: HEROKU_POSTGRESQL_GOLD_U
+  #   url: <%= ENV['HEROKU_POSTGRESQL_GOLD_URL'] %>
 
-  POSTGRES_HOST_AUTH_METHOD: trust
+  # POSTGRES_HOST_AUTH_METHOD: trust
