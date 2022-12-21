@@ -62,9 +62,10 @@ development:
   database: testdb
   username: samtimus
   password: '123'
-  # production: 
-  #   <<: *default
-  #   database: HEROKU_POSTGRESQL_GOLD_URL
-  #   url: <%= ENV['HEROKU_POSTGRESQL_GOLD_URL'] %>
+
+  production: 
+    <<: *default
+    database: rrgzjdvmcctsmo
+    url: <%= ENV['DATABASE_URL'] %>
 
   # POSTGRES_HOST_AUTH_METHOD: trust
