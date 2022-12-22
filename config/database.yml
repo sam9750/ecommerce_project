@@ -66,6 +66,9 @@ development:
   production: 
     <<: *default
     database: rrgzjdvmcctsmo
+     host: localhost   
+    port: 5432   
+    username: samtimus 
     url: <%= ENV['HEROKU_POSTGRESQL_GOLD_URL'] %>
 
   # POSTGRES_HOST_AUTH_METHOD: trust
