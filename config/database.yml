@@ -69,5 +69,6 @@ development:
     port: 5432   
     username: samtimus 
     url: <%= ENV['HEROKU_POSTGRESQL_GOLD_URL'] %>
+    socket: /tmp/.s.PGSQL.5432
 
   # POSTGRES_HOST_AUTH_METHOD: trust
