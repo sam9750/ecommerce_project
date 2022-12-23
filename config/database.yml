@@ -65,9 +65,9 @@ development:
 
   production: 
     <<: *default
-    database: deqekls9edv99h   
+    database: deqekls9edv99h
     port: 5432   
-    username: samtimus 
+    username: rrgzjdvmcctsmo 
     url: <%= ENV['HEROKU_POSTGRESQL_GOLD_URL'] %>
     socket: /tmp/.s.PGSQL.5432
 
