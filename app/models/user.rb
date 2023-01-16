@@ -47,7 +47,6 @@ def order
   self.orders.find_by(checked_out: false)
 end
 
-
   def cart
     orde = self.order
     if orde
