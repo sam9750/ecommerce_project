@@ -4,7 +4,6 @@ class User < ApplicationRecord
     has_many :carts, through: :orders
     has_many :cart_items, through: :carts
     # has_one :cart
-
     has_secure_password
      # Validations: username
      validates :username, presence: true
