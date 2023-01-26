@@ -72,4 +72,5 @@ development:
     socket: /tmp/.s.PGSQL.5432
 
 
-  #POSTGRES_HOST_AUTH_METHOD: trust
+  #POSTGRES_HOST_AUTH_METHOD: trust 
+  #ignore
